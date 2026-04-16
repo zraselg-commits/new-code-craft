@@ -1,0 +1,38 @@
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
+import { requireAdmin } from "@lib/auth";
+import { findOrderById, updateOrder } from "@lib/firestore";
+
+export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+  const { user, error, status } = await requireAdmin(req);
+  if (!user) return NextResponse.json({ error }, { status });
+
+  try {
+    const order = await findOrderById(params.id);
+    if (!order) return NextResponse.json({ error: "Order not found" }, { status: 404 });
+    return NextResponse.json(order);
+  } catch (err) {
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+  }
+}
+
+export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+  const { user, error, status } = await requireAdmin(req);
+  if (!user) return NextResponse.json({ error }, { status });
+
+  const patchSchema = z.object({
+    status: z.enum(["pending", "processing", "completed"]).optional(),
+    paymentStatus: z.enum(["unpaid", "paid", "refunded"]).optional(),
+  });
+  const body = await req.json().catch(() => null);
+  const result = patchSchema.safeParse(body);
+  if (!result.success) return NextResponse.json({ error: "Validation failed" }, { status: 400 });
+
+  try {
+    const updated = await updateOrder(params.id, result.data);
+    if (!updated) return NextResponse.json({ error: "Order not found" }, { status: 404 });
+    return NextResponse.json(updated);
+  } catch (err) {
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+  }
+}

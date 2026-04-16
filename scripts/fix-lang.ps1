@@ -1,0 +1,259 @@
+
+# Read the existing file
+$filePath = "src\contexts\LanguageContext.tsx"
+$lines = Get-Content -Path $filePath -Encoding UTF8
+
+# Find bn: { start and end
+$bnStart = -1
+$bnEnd = -1
+for ($i = 0; $i -lt $lines.Count; $i++) {
+    if ($lines[$i] -match "^  bn: \{" -and $bnStart -eq -1) {
+        $bnStart = $i
+    }
+    if ($bnStart -ge 0 -and $i -gt $bnStart -and $lines[$i] -match "^  \},") {
+        $bnEnd = $i
+        break
+    }
+}
+
+Write-Host "bn section: lines $($bnStart+1) to $($bnEnd+1)"
+
+# The correct Bengali translations
+$bnBlock = @'
+  bn: {
+    navHome: "হোম",
+    navServices: "সেবাসমূহ",
+    navPricing: "মূল্য তালিকা",
+    navPortfolio: "আমাদের ডেমো",
+    navTeam: "আমাদের দল",
+    navWhyUs: "কেন আমরা",
+    navContact: "যোগাযোগ",
+    navAbout: "আমাদের সম্পর্কে",
+    navFaq: "সাধারণ প্রশ্ন",
+    navPrivacy: "গোপনীয়তা নীতি",
+    navTerms: "নিয়ম ও শর্ত",
+    navCta: "শুরু করুন",
+    navMore: "আরও",
+    navSectionMain: "মেনু",
+    navSectionInfo: "তথ্য",
+    navSectionAccount: "অ্যাকাউন্ট",
+    navProfile: "প্রোফাইল",
+    navAdminPanel: "অ্যাডমিন প্যানেল",
+    navSignOut: "সাইন আউট",
+    navSignIn: "সাইন ইন",
+    navCreateAccount: "অ্যাকাউন্ট তৈরি করুন",
+    cart: "কার্ট",
+
+    heroBadge: "কোড ক্র্যাফট বিডি - সম্পূর্ণ ডিজিটাল এজেন্সি",
+    heroHeading1: "আমরা তৈরি করি, বৃদ্ধি করি ও",
+    heroHeading2: "রূপান্তরিত করি",
+    heroHeading3: "আপনার ডিজিটাল উপস্থিতি।",
+    heroSub1: "স্বাগতম",
+    heroName: "Code Craft BD",
+    heroSub2: " - তে - কাস্টম ওয়েব সমাধান, AI অটোমেশন, SEO প্রবৃদ্ধি এবং ক্রিয়েটিভ মিডিয়া প্রদানকারী একটি মাল্টি-সার্ভিস ডিজিটাল এজেন্সি।",
+    heroCtaPrimary: "বিনামূল্যে পরামর্শ নিন",
+    heroCtaSecondary: "আমাদের পোর্টফোলিও",
+    heroProjects: "প্রজেক্ট",
+    heroClients: "ক্লায়েন্ট",
+    heroYears: "বছর",
+    typewriterWords: ["ওয়েব ডেভেলপমেন্ট", "AI অটোমেশন", "SEO ও প্রবৃদ্ধি", "ভিডিও এডিটিং", "ব্র্যান্ড ডিজাইন", "অ্যাডমিন প্যানেল"],
+
+    statsProjects: "সম্পন্ন প্রজেক্ট",
+    statsClients: "সন্তুষ্ট ক্লায়েন্ট",
+    statsSatisfaction: "ক্লায়েন্ট সন্তুষ্টি",
+    statsSupport: "সাপোর্ট উপলব্ধ",
+
+    servicesTag: "আমরা কী অফার করি",
+    servicesHeading: "আমাদের মূল",
+    servicesHeadingHighlight: "সেবাসমূহ",
+    svcWebTitle: "কাস্টম ওয়েব ও অ্যাডমিন প্যানেল",
+    svcWebDesc: "এন্টারপ্রাইজ-গ্রেড ওয়েবসাইট, অ্যাডমিন ড্যাশবোর্ড, ই-কমার্স প্ল্যাটফর্ম এবং ম্যানেজমেন্ট সিস্টেম।",
+    svcAiTitle: "AI এজেন্ট অটোমেশন",
+    svcAiDesc: "সোশ্যাল মিডিয়া, ওয়েবসাইট চ্যাটবট এবং ব্যবসায়িক কার্যপ্রবাহের জন্য AI এজেন্ট স্থাপন করুন।",
+    svcSeoTitle: "SEO ও ডিজিটাল প্রবৃদ্ধি",
+    svcSeoDesc: "টেকনিক্যাল SEO, কন্টেন্ট স্ট্র্যাটেজি এবং পারফরম্যান্স অপ্টিমাইজেশন দিয়ে সার্চ র‍্যাংকিং দখল করুন।",
+    svcCreativeTitle: "ক্রিয়েটিভ মিডিয়া ও ডিজাইন",
+    svcCreativeDesc: "পেশাদার ভিডিও এডিটিং, মোশন গ্রাফিক্স, বায়োগ্রাফি ডিজাইন, ব্র্যান্ড পরিচয় এবং সোশ্যাল মিডিয়া কন্টেন্ট।",
+    svcLearnMore: "আরও জানুন",
+    svcAddToCart: "কার্টে যোগ করুন",
+    svcBuyNow: "এখনই কিনুন",
+
+    processTag: "আমরা কীভাবে কাজ করি",
+    processHeading: "আমাদের",
+    processHeadingHighlight: "প্রক্রিয়া",
+    proc1Title: "আবিষ্কার ও কৌশল",
+    proc1Desc: "আপনার ব্যবসা, লক্ষ্যদর্শক এবং প্রতিযোগিতা বিশ্লেষণ করে কাস্টম কৌশল তৈরি করি।",
+    proc2Title: "ডিজাইন ও প্রোটোটাইপ",
+    proc2Desc: "পিক্সেল-পারফেক্ট ডিজাইন এবং ইন্টারেক্টিভ প্রোটোটাইপ যা আপনার দৃষ্টিভঙ্গি বাস্তবে রূপ দেয়।",
+    proc3Title: "ডেভেলপমেন্ট ও ইন্টিগ্রেশন",
+    proc3Desc: "AI ইন্টিগ্রেশন, SEO অপ্টিমাইজেশন এবং থার্ড-পার্টি API সহ পরিষ্কার, পারফরম্যান্ট কোড।",
+    proc4Title: "লঞ্চ ও স্কেল",
+    proc4Desc: "কঠোর পরীক্ষা, ডিপ্লয়মেন্ট, চলমান সাপোর্ট এবং প্রবৃদ্ধি কৌশল।",
+
+    portfolioTag: "লাইভ ডেমো",
+    portfolioHeading: "আমাদের",
+    portfolioHeadingHighlight: "ডেমো",
+    port1Title: "BD Order Solution",
+    port1Cat: "ই-কমার্স প্ল্যাটফর্ম",
+    port1Desc: "bKash/Nagad পেমেন্ট ইন্টিগ্রেশন সহ অল-ইন-ওয়ান WooCommerce চেকআউট ম্যানেজার।",
+    port1Metric: "বিক্রয় ৪০% বৃদ্ধি পেয়েছে",
+    port2Title: "কারিয়ানা কুরআন ওয়েব অ্যাপ",
+    port2Cat: "ফুল-স্ট্যাক ওয়েব অ্যাপ",
+    port2Desc: "কুরআন পাঠ ও নামাজের সময় সহ ব্যাপক ইসলামিক টুলস স্যুট।",
+    port2Metric: "১০K+ সক্রিয় ব্যবহারকারী",
+    port3Title: "হার্বো কিউর ম্যানেজমেন্ট",
+    port3Cat: "এন্টারপ্রাইজ ড্যাশবোর্ড",
+    port3Desc: "রোগী ব্যবস্থাপনা ও বিশ্লেষণের জন্য স্বাস্থ্যসেবা প্র্যাকটিশনার ড্যাশবোর্ড।",
+    port3Metric: "দক্ষতা ৬০% বৃদ্ধি",
+    port4Title: "AI এজেন্ট ও DevOps",
+    port4Cat: "AI অটোমেশন",
+    port4Desc: "সোশ্যাল মিডিয়া ম্যানেজমেন্ট ও কন্টেন্ট জেনারেশনের জন্য স্বায়ত্তশাসিত AI এজেন্ট।",
+    port4Metric: "৫x দ্রুততর অপারেশন",
+
+    testTag: "ক্লায়েন্টদের কথা",
+    testHeading: "ক্লায়েন্টরা",
+    testHeadingHighlight: "কী বলেন",
+
+    techTag: "আমাদের টেক আর্সেনাল",
+    techHeading: "টেক",
+    techHeadingHighlight: "স্ট্যাক",
+
+    roiTag: "প্রভাব দেখুন",
+    roiHeading: "AI ROI",
+    roiHeadingHighlight: "ক্যালকুলেটর",
+    roiHoursLabel: "প্রতি সপ্তাহে ম্যানুয়াল কাজে ব্যয়িত ঘণ্টা",
+    roiRateLabel: "আপনার প্রতি ঘণ্টার হার ($)",
+    roiResult: "আমাদের AI অটোমেশন দিয়ে আপনি সাশ্রয় করতে পারেন",
+    roiHours: "ঘণ্টা/সপ্তাহ",
+    roiMoney: "/বছর",
+    roiCta: "আপনার ব্যবসা অটোমেট করি চলুন",
+
+    faqTag: "সাধারণ প্রশ্নসমূহ",
+    faqHeading: "প্রায়",
+    faqHeadingHighlight: "জিজ্ঞাসিত প্রশ্ন",
+    faq1Q: "Code Craft BD কী ধরনের সেবা প্রদান করে?",
+    faq1A: "আমরা কাস্টম ওয়েব ডেভেলপমেন্ট, অ্যাডমিন প্যানেল, AI অটোমেশন, SEO, ভিডিও এডিটিং, বায়োগ্রাফি ডিজাইন এবং ব্র্যান্ড আইডেন্টিটি প্যাকেজ অফার করি।",
+    faq2Q: "একটি সাধারণ প্রজেক্ট কত সময় নেয়?",
+    faq2A: "ল্যান্ডিং পেজ: ১-২ সপ্তাহ, অ্যাডমিন প্যানেল: ৩-৬ সপ্তাহ, এন্টারপ্রাইজ AI: ৪-৮ সপ্তাহ।",
+    faq3Q: "আপনারা কি বড় কোম্পানিগুলোর সাথে কাজ করেন?",
+    faq3A: "অবশ্যই। আমরা এন্টারপ্রাইজ-গ্রেড সমাধানে বিশেষজ্ঞ।",
+    faq4Q: "আপনাদের মূল্য নির্ধারণ পদ্ধতি কী?",
+    faq4A: "আমরা ফিক্সড-প্রাইস, মাইলস্টোন-ভিত্তিক এবং রিটেইনার মডেল অফার করি।",
+    faq5Q: "আপনারা কি ডেভেলপমেন্টের পাশাপাশি SEO পরিচালনা করতে পারেন?",
+    faq5A: "হ্যাঁ! আমরা আপনার ওয়েবসাইট নির্মাণ থেকে Google-এ র‍্যাংকিং পর্যন্ত সব কিছু পরিচালনা করি।",
+
+    ctaHeading1: "প্রস্তুত আপনার",
+    ctaHeadingHighlight: "ব্যবসাকে",
+    ctaHeading2: "উন্নত করতে?",
+    ctaDesc: "আপনার যদি কাস্টম ওয়েব অ্যাপ, AI অটোমেশন, বা অসাধারণ কন্টেন্ট দরকার হয় - Code Craft BD আপনার ডিজিটাল পার্টনার।",
+    ctaCta1: "বিনামূল্যে পরামর্শ নিন",
+    ctaCta2: "আমাদের কাজ দেখুন",
+
+    contactTag: "যোগাযোগ করুন",
+    contactSubheading: "আপনার প্রজেক্ট সম্পর্কে বলুন - আমরা ২৪ ঘণ্টার মধ্যে সাড়া দেব।",
+    contactHeading: "চলুন একসাথে",
+    contactHeadingHighlight: "তৈরি করি",
+    contactName: "নাম",
+    contactNamePlaceholder: "আপনার নাম",
+    contactEmail: "ইমেইল",
+    contactEmailPlaceholder: "you@email.com",
+    contactDetails: "আপনার প্রজেক্ট সম্পর্কে বলুন",
+    contactDetailsPlaceholder: "আপনার প্রজেক্ট, লক্ষ্য, সময়সীমা ও বাজেট বর্ণনা করুন...",
+    contactSend: "অনুসন্ধান পাঠান",
+    contactSuccess: "অনুসন্ধান পাঠানো হয়েছে! আমরা ২৪ ঘণ্টার মধ্যে জবাব দেব।",
+    contactError: "পাঠাতে ব্যর্থ হয়েছে। আবার চেষ্টা করুন।",
+
+    footerText: "কোড ক্র্যাফট বিডি - আপনার ডিজিটাল প্রবৃদ্ধির অংশীদার।",
+
+    pricingTag: "আপনার পরিকল্পনা বেছে নিন",
+    pricingHeading: "স্বচ্ছ",
+    pricingHeadingHighlight: "মূল্য নির্ধারণ",
+    pricingBasic: "বেসিক",
+    pricingStandard: "স্ট্যান্ডার্ড",
+    pricingPremium: "প্রিমিয়াম",
+    pricingPopular: "সবচেয়ে জনপ্রিয়",
+    pricingBasicPrice: "$299",
+    pricingStandardPrice: "$699",
+    pricingPremiumPrice: "$1,499",
+    pricingBasicDesc: "স্টার্টআপ ও ছোট ব্যবসার জন্য আদর্শ",
+    pricingStandardDesc: "ক্রমবর্ধমান ব্যবসার জন্য সেরা",
+    pricingPremiumDesc: "এন্টারপ্রাইজ-গ্রেড সমাধান",
+    pricingCta: "শুরু করুন",
+    pricingBasicFeatures: ["ল্যান্ডিং পেজ", "মোবাইল রেসপন্সিভ", "বেসিক SEO", "যোগাযোগ ফর্ম", "৩ রিভিশন"],
+    pricingStandardFeatures: ["মাল্টি-পেজ ওয়েবসাইট", "অ্যাডমিন ড্যাশবোর্ড", "অ্যাডভান্সড SEO", "AI চ্যাটবট", "CMS ইন্টিগ্রেশন", "১০ রিভিশন"],
+    pricingPremiumFeatures: ["কাস্টম ওয়েব অ্যাপ", "ফুল অ্যাডমিন প্যানেল", "AI অটোমেশন স্যুট", "প্রায়োরিটি সাপোর্ট", "ভিডিও কন্টেন্ট", "আনলিমিটেড রিভিশন"],
+
+    teamTag: "দলের সাথে পরিচিত হন",
+    teamHeading: "আমাদের",
+    teamHeadingHighlight: "বিশেষজ্ঞরা",
+
+    whyTag: "কেন আমাদের বেছে নেবেন",
+    whyHeading: "কেন আমাদের সাথে",
+    whyHeadingHighlight: "অংশীদারিত্ব করবেন",
+    why1Title: "২৪/৭ সাপোর্ট",
+    why1Desc: "আপনার সমস্ত ডিজিটাল চাহিদার জন্য সার্বক্ষণিক প্রাপ্যতা।",
+    why2Title: "প্রিমিয়াম মান",
+    why2Desc: "প্রতিটি পিক্সেল, কোডের প্রতিটি লাইন সর্বোচ্চ মান পূরণ করে।",
+    why3Title: "দ্রুত ডেলিভারি",
+    why3Desc: "আমরা মানের সাথে আপোস না করে সময়সীমা মেনে চলি।",
+    why4Title: "স্কেলযোগ্য সমাধান",
+    why4Desc: "প্রথম দিন থেকে আপনার ব্যবসার সাথে বৃদ্ধি পেতে নির্মিত।",
+    why5Title: "স্বচ্ছ মূল্য নির্ধারণ",
+    why5Desc: "কোনো লুকানো চার্জ নেই। স্পষ্ট মাইলস্টোন এবং ডেলিভারেবল।",
+    why6Title: "প্রমাণিত ফলাফল",
+    why6Desc: "বিভিন্ন শিল্পে ৫০+ সফল প্রজেক্টের ট্র্যাক রেকর্ড।",
+
+    cartTitle: "আপনার কার্ট",
+    cartEmpty: "আপনার কার্ট খালি",
+    cartTotal: "মোট",
+    cartCheckout: "চেকআউট করুন",
+    cartRemove: "সরান",
+    cartAdded: "কার্টে যোগ হয়েছে!",
+
+    checkoutTitle: "চেকআউট",
+    checkoutName: "পূর্ণ নাম",
+    checkoutEmail: "ইমেইল ঠিকানা",
+    checkoutPhone: "ফোন নম্বর",
+    checkoutMessage: "অতিরিক্ত নোট",
+    checkoutSubmit: "অর্ডার দিন",
+    checkoutSuccess: "অর্ডার সফলভাবে সম্পন্ন হয়েছে!",
+    checkoutSuccessDesc: "আমরা ২৪ ঘণ্টার মধ্যে আপনার প্রজেক্ট নিয়ে যোগাযোগ করব।",
+    checkoutBack: "হোমে ফিরে যান",
+
+    aboutTag: "আমাদের সম্পর্কে",
+    aboutHeading: "যে দলটির পেছনে",
+    aboutHeadingHighlight: "Code Craft BD",
+    aboutSubheading: "আমরা বাংলাদেশে সদর দপ্তরের একটি ফুল-সার্ভিস ডিজিটাল এজেন্সি, যা বিশ্বব্যাপী ব্যবসায়িক প্রতিষ্ঠানকে শক্তিশালী ওয়েব পণ্য তৈরি, AI দিয়ে কার্যপ্রবাহ স্বয়ংক্রিয় করতে এবং তাদের ডিজিটাল উপস্থিতি বৃদ্ধি করতে সাহায্য করে।",
+    aboutStoryTitle: "আমাদের গল্প",
+    aboutStory1: "কোড ক্র্যাফট বিডি প্রতিষ্ঠা করা হয়েছিল উৎসাহী ডেভেলপার ও ডিজাইনারদের একটি দল দ্বারা যারা বিশ্বাস করতেন যে প্রতিটি ব্যবসা - আকার নির্বিশেষে - সাশ্রয়ী মূল্যে এন্টারপ্রাইজ-গ্রেড ডিজিটাল সমাধান পাওয়ার যোগ্য।",
+    aboutStory2: "ওয়েব ডেভেলপমেন্ট দিয়ে শুরু করে, ক্লায়েন্টদের চাহিদা যত বেড়েছে আমরা AI অটোমেশন, SEO, ভিডিও প্রোডাকশন এবং ব্র্যান্ড ডিজাইনেও দ্রুত প্রসারিত হয়েছি।",
+    aboutStory3: "আমরা রিমোট-ফার্স্ট সংস্কৃতিতে কাজ করি, বাংলাদেশ জুড়ে প্রতিভা সংগ্রহ করি এবং বিশ্বব্যাপী বিশেষজ্ঞদের সাথে সহযোগিতা করি।",
+    aboutDiffTitle: "আমরা কেন আলাদা",
+    aboutVal1Title: "মিশন-চালিত",    aboutVal1Desc: "প্রতিটি প্রজেক্ট একটি ব্যবসাকে রূপান্তরিত করার দিকে এক ধাপ। আমরা আপনার লক্ষ্যকে আমাদের নিজের মনে করি।",
+    aboutVal2Title: "গতি ও মান",   aboutVal2Desc: "পিক্সেল-পারফেক্ট মান এবং প্রোডাকশন-রেডি কোড আপোস না করে দ্রুত ডেলিভারি।",
+    aboutVal3Title: "ক্লায়েন্ট-কেন্দ্রিক",   aboutVal3Desc: "২৪/৭ সাপোর্ট, স্বচ্ছ যোগাযোগ এবং ডেলিভারি পরবর্তী সীমাহীন সহায়তা।",
+    aboutVal4Title: "বৈশ্বিক পরিধি",     aboutVal4Desc: "২০২০ সাল থেকে বাংলাদেশ থেকে ইউরোপ, আমেরিকা এবং তার বাইরেও ক্লায়েন্টদের সেবা দিচ্ছি।",
+    aboutVal5Title: "প্রমাণিত ফলাফল",   aboutVal5Desc: "২০০+ প্রজেক্ট সম্পন্ন, ৯৮% ক্লায়েন্ট সন্তুষ্টি এবং প্রতি মাসে বাড়ছে।",
+    aboutVal6Title: "বিশেষজ্ঞ দল",      aboutVal6Desc: "ডিজাইনার, ডেভেলপার, AI ইঞ্জিনিয়ার এবং SEO বিশেষজ্ঞদের একটি বাছাই করা দল।",
+
+    contactSendTitle: "একটি বার্তা পাঠান",
+    contactDirectTitle: "সরাসরি যোগাযোগ করুন",
+    contactSkipDesc: "ফর্ম এড়িয়ে যান - আপনার পছন্দের প্ল্যাটফর্মে আমাদের সাথে যোগাযোগ করুন।",
+    contactOfficeHours: "অফিস সময়",
+    contactFormSending: "পাঠানো হচ্ছে...",
+    contactServiceLabel: "আগ্রহী সেবা",
+    contactPhoneLabel: "ফোন (ঐচ্ছিক)",
+    contactSelectService: "- একটি সেবা বেছে নিন -",
+  },
+'@
+
+# Build the new file: take lines before bn section + new bn block + lines after bn section
+$beforeBn = $lines[0..($bnStart - 1)]
+$afterBn = $lines[($bnEnd)..($lines.Count - 1)]
+
+$newContent = ($beforeBn -join "`r`n") + "`r`n" + $bnBlock + "`r`n" + ($afterBn -join "`r`n")
+
+# Write back as UTF-8 with BOM to ensure encoding is correct
+[System.IO.File]::WriteAllText((Resolve-Path $filePath).Path, $newContent, [System.Text.UTF8Encoding]::new($false))
+
+Write-Host "Done! File updated successfully."

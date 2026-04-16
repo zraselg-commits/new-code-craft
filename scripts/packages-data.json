@@ -1,0 +1,506 @@
+[
+  {
+    "id": "0880331f-627e-4ff2-9dd1-b8f39ac18782",
+    "serviceId": "7034a7f3-c06c-46b8-8097-8c4d3d352c37",
+    "name": "Basic",
+    "name_bn": "বেসিক",
+    "tier": "basic",
+    "price": "499",
+    "features": [
+      "5-page landing site",
+      "Mobile responsive",
+      "Contact form",
+      "Basic SEO setup",
+      "2 rounds of revisions"
+    ],
+    "features_bn": [
+      "৫-পেজ ল্যান্ডিং সাইট",
+      "মোবাইল রেসপন্সিভ",
+      "যোগাযোগ ফর্ম",
+      "বেসিক SEO সেটআপ",
+      "২ রাউন্ড রিভিশন"
+    ],
+    "deliveryDays": 7,
+    "revisions": 2,
+    "isPopular": false,
+    "createdAt": "2026-03-30T03:43:05.594Z"
+  },
+  {
+    "id": "cae02622-886c-4f09-83cd-7b941eb0a729",
+    "serviceId": "7034a7f3-c06c-46b8-8097-8c4d3d352c37",
+    "name": "Standard",
+    "name_bn": "স্ট্যান্ডার্ড",
+    "tier": "standard",
+    "price": "1299",
+    "features": [
+      "Up to 15 pages",
+      "Custom admin panel",
+      "E-commerce ready",
+      "Advanced SEO",
+      "CMS integration",
+      "5 rounds of revisions"
+    ],
+    "features_bn": [
+      "১৫ পেজ পর্যন্ত",
+      "কাস্টম অ্যাডমিন প্যানেল",
+      "ই-কমার্স রেডি",
+      "অ্যাডভান্সড SEO",
+      "CMS ইন্টিগ্রেশন",
+      "৫ রাউন্ড রিভিশন"
+    ],
+    "deliveryDays": 14,
+    "revisions": 5,
+    "isPopular": true,
+    "createdAt": "2026-03-30T03:43:05.599Z"
+  },
+  {
+    "id": "9473724a-1cd7-4f87-b990-6b79d159add2",
+    "serviceId": "7034a7f3-c06c-46b8-8097-8c4d3d352c37",
+    "name": "Premium",
+    "name_bn": "প্রিমিয়াম",
+    "tier": "premium",
+    "price": "2999",
+    "features": [
+      "Unlimited pages",
+      "Full custom admin panel",
+      "E-commerce + payments",
+      "Technical SEO audit",
+      "Performance optimization",
+      "Ongoing support 30 days",
+      "Unlimited revisions"
+    ],
+    "features_bn": [
+      "আনলিমিটেড পেজ",
+      "ফুল কাস্টম অ্যাডমিন প্যানেল",
+      "ই-কমার্স + পেমেন্ট",
+      "টেকনিক্যাল SEO অডিট",
+      "পারফরম্যান্স অপ্টিমাইজেশন",
+      "৩০ দিন চলমান সাপোর্ট",
+      "আনলিমিটেড রিভিশন"
+    ],
+    "deliveryDays": 30,
+    "revisions": null,
+    "isPopular": false,
+    "createdAt": "2026-03-30T03:43:05.602Z"
+  },
+  {
+    "id": "c2e7f7e6-1915-4605-8935-facccc424c95",
+    "serviceId": "7d0d6173-ae0c-47d4-a521-f5d488c2b439",
+    "name": "Basic",
+    "name_bn": "বেসিক",
+    "tier": "basic",
+    "price": "399",
+    "features": [
+      "1 AI chatbot",
+      "Website integration",
+      "FAQ automation",
+      "Basic analytics",
+      "1 revision"
+    ],
+    "features_bn": [
+      "১টি AI চ্যাটবট",
+      "ওয়েবসাইট ইন্টিগ্রেশন",
+      "FAQ অটোমেশন",
+      "বেসিক অ্যানালিটিক্স",
+      "১টি রিভিশন"
+    ],
+    "deliveryDays": 5,
+    "revisions": 1,
+    "isPopular": false,
+    "createdAt": "2026-03-30T03:43:05.608Z"
+  },
+  {
+    "id": "7236107e-25e1-458a-8365-07da5750032c",
+    "serviceId": "7d0d6173-ae0c-47d4-a521-f5d488c2b439",
+    "name": "Standard",
+    "name_bn": "স্ট্যান্ডার্ড",
+    "tier": "standard",
+    "price": "999",
+    "features": [
+      "Up to 3 AI agents",
+      "Social media automation",
+      "Lead generation bot",
+      "Workflow automation",
+      "Analytics dashboard",
+      "3 revisions"
+    ],
+    "features_bn": [
+      "৩টি পর্যন্ত AI এজেন্ট",
+      "সোশ্যাল মিডিয়া অটোমেশন",
+      "লিড জেনারেশন বট",
+      "ওয়ার্কফ্লো অটোমেশন",
+      "অ্যানালিটিক্স ড্যাশবোর্ড",
+      "৩টি রিভিশন"
+    ],
+    "deliveryDays": 10,
+    "revisions": 3,
+    "isPopular": true,
+    "createdAt": "2026-03-30T03:43:05.611Z"
+  },
+  {
+    "id": "0bb5881c-c925-4111-bbd5-615125906afd",
+    "serviceId": "7d0d6173-ae0c-47d4-a521-f5d488c2b439",
+    "name": "Premium",
+    "name_bn": "প্রিমিয়াম",
+    "tier": "premium",
+    "price": "2499",
+    "features": [
+      "Unlimited AI agents",
+      "Full business automation",
+      "Custom AI model fine-tuning",
+      "CRM integration",
+      "24/7 monitoring",
+      "30-day support",
+      "Unlimited revisions"
+    ],
+    "features_bn": [
+      "আনলিমিটেড AI এজেন্ট",
+      "সম্পূর্ণ ব্যবসায়িক অটোমেশন",
+      "কাস্টম AI মডেল ফাইন-টিউনিং",
+      "CRM ইন্টিগ্রেশন",
+      "২৪/৭ মনিটরিং",
+      "৩০ দিন সাপোর্ট",
+      "আনলিমিটেড রিভিশন"
+    ],
+    "deliveryDays": 21,
+    "revisions": null,
+    "isPopular": false,
+    "createdAt": "2026-03-30T03:43:05.615Z"
+  },
+  {
+    "id": "fbcfac0a-6992-4325-8a0a-e19eef4c9c56",
+    "serviceId": "2bcd71d2-ab69-45c1-9d14-c174da9a70d6",
+    "name": "Basic",
+    "name_bn": "বেসিক",
+    "tier": "basic",
+    "price": "298.98",
+    "features": [
+      "SEO audit report",
+      "Keyword research (50)",
+      "On-page optimization",
+      "Google Search Console setup",
+      "Monthly report"
+    ],
+    "features_bn": [
+      "SEO অডিট রিপোর্ট",
+      "কীওয়ার্ড রিসার্চ (৫০টি)",
+      "অন-পেজ অপ্টিমাইজেশন",
+      "Google Search Console সেটআপ",
+      "মাসিক রিপোর্ট"
+    ],
+    "deliveryDays": 7,
+    "revisions": 1,
+    "isPopular": false,
+    "createdAt": "2026-03-30T03:43:05.621Z"
+  },
+  {
+    "id": "9b47105d-cd1f-4e9c-93f0-5dd1407d6d13",
+    "serviceId": "2bcd71d2-ab69-45c1-9d14-c174da9a70d6",
+    "name": "Standard",
+    "name_bn": "স্ট্যান্ডার্ড",
+    "tier": "standard",
+    "price": "699",
+    "features": [
+      "Full technical SEO audit",
+      "Keyword research (200)",
+      "Content strategy plan",
+      "Link building (10/month)",
+      "Performance tracking",
+      "Bi-weekly reports"
+    ],
+    "features_bn": [
+      "পূর্ণ টেকনিক্যাল SEO অডিট",
+      "কীওয়ার্ড রিসার্চ (২০০টি)",
+      "কন্টেন্ট স্ট্র্যাটেজি প্ল্যান",
+      "লিঙ্ক বিল্ডিং (১০/মাস)",
+      "পারফরম্যান্স ট্র্যাকিং",
+      "পাক্ষিক রিপোর্ট"
+    ],
+    "deliveryDays": 14,
+    "revisions": 3,
+    "isPopular": true,
+    "createdAt": "2026-03-30T03:43:05.623Z"
+  },
+  {
+    "id": "f52260ee-750b-46ca-9d9c-2c63605e6db1",
+    "serviceId": "2bcd71d2-ab69-45c1-9d14-c174da9a70d6",
+    "name": "Premium",
+    "name_bn": "প্রিমিয়াম",
+    "tier": "premium",
+    "price": "1499",
+    "features": [
+      "Enterprise SEO strategy",
+      "Unlimited keyword research",
+      "Content creation (4 posts/mo)",
+      "Premium link building",
+      "Competitor analysis",
+      "Weekly reports",
+      "Dedicated SEO manager"
+    ],
+    "features_bn": [
+      "এন্টারপ্রাইজ SEO কৌশল",
+      "আনলিমিটেড কীওয়ার্ড রিসার্চ",
+      "কন্টেন্ট তৈরি (৪ পোস্ট/মাস)",
+      "প্রিমিয়াম লিঙ্ক বিল্ডিং",
+      "প্রতিযোগী বিশ্লেষণ",
+      "সাপ্তাহিক রিপোর্ট",
+      "ডেডিকেটেড SEO ম্যানেজার"
+    ],
+    "deliveryDays": 30,
+    "revisions": null,
+    "isPopular": false,
+    "createdAt": "2026-03-30T03:43:05.626Z"
+  },
+  {
+    "id": "21173271-619c-4a43-9f88-37322df0684a",
+    "serviceId": "1a4ccc5e-daa8-4566-aff3-0f2f9db74822",
+    "name": "Basic",
+    "name_bn": "বেসিক",
+    "tier": "basic",
+    "price": "199",
+    "features": [
+      "3 short-form videos (60s)",
+      "Basic color grading",
+      "Subtitles/captions",
+      "1 thumbnail design",
+      "2 revisions"
+    ],
+    "features_bn": [
+      "৩টি শর্ট-ফর্ম ভিডিও (৬০ সেকেন্ড)",
+      "বেসিক কালার গ্রেডিং",
+      "সাবটাইটেল/ক্যাপশন",
+      "১টি থাম্বনেইল ডিজাইন",
+      "২টি রিভিশন"
+    ],
+    "deliveryDays": 5,
+    "revisions": 2,
+    "isPopular": false,
+    "createdAt": "2026-03-30T03:43:05.631Z"
+  },
+  {
+    "id": "29774b5c-4b2e-461c-9230-304f3a2719c5",
+    "serviceId": "1a4ccc5e-daa8-4566-aff3-0f2f9db74822",
+    "name": "Standard",
+    "name_bn": "স্ট্যান্ডার্ড",
+    "tier": "standard",
+    "price": "549",
+    "features": [
+      "8 videos (up to 5 min)",
+      "Advanced color grading",
+      "Motion graphics",
+      "Brand kit design",
+      "10 social media posts",
+      "5 revisions"
+    ],
+    "features_bn": [
+      "৮টি ভিডিও (সর্বোচ্চ ৫ মিনিট)",
+      "অ্যাডভান্সড কালার গ্রেডিং",
+      "মোশন গ্রাফিক্স",
+      "ব্র্যান্ড কিট ডিজাইন",
+      "১০টি সোশ্যাল মিডিয়া পোস্ট",
+      "৫টি রিভিশন"
+    ],
+    "deliveryDays": 10,
+    "revisions": 5,
+    "isPopular": true,
+    "createdAt": "2026-03-30T03:43:05.634Z"
+  },
+  {
+    "id": "255747a6-5f81-4b38-ae5d-99279630e567",
+    "serviceId": "1a4ccc5e-daa8-4566-aff3-0f2f9db74822",
+    "name": "Premium",
+    "name_bn": "প্রিমিয়াম",
+    "tier": "premium",
+    "price": "1299",
+    "features": [
+      "Unlimited videos",
+      "Cinema-grade editing",
+      "Full brand identity",
+      "Social media content strategy",
+      "30 posts/month",
+      "Intro/outro animation",
+      "Unlimited revisions"
+    ],
+    "features_bn": [
+      "আনলিমিটেড ভিডিও",
+      "সিনেমা-গ্রেড এডিটিং",
+      "ফুল ব্র্যান্ড আইডেন্টিটি",
+      "সোশ্যাল মিডিয়া কন্টেন্ট স্ট্র্যাটেজি",
+      "৩০ পোস্ট/মাস",
+      "ইন্ট্রো/আউট্রো অ্যানিমেশন",
+      "আনলিমিটেড রিভিশন"
+    ],
+    "deliveryDays": 21,
+    "revisions": null,
+    "isPopular": false,
+    "createdAt": "2026-03-30T03:43:05.637Z"
+  },
+  {
+    "id": "be6a78b1-6cb1-4b83-899a-6c5c37398e58",
+    "serviceId": "f33aa9cd-d13e-4528-950b-332c71ceb45c",
+    "name": "Basic",
+    "name_bn": "বেসিক",
+    "tier": "basic",
+    "price": "249",
+    "features": [
+      "2 platforms",
+      "8 posts/month",
+      "Basic graphics",
+      "Monthly analytics report",
+      "Hashtag research"
+    ],
+    "features_bn": [
+      "২টি প্ল্যাটফর্ম",
+      "৮ পোস্ট/মাস",
+      "বেসিক গ্রাফিক্স",
+      "মাসিক অ্যানালিটিক্স রিপোর্ট",
+      "হ্যাশট্যাগ রিসার্চ"
+    ],
+    "deliveryDays": 3,
+    "revisions": 1,
+    "isPopular": false,
+    "createdAt": "2026-03-30T03:43:05.643Z"
+  },
+  {
+    "id": "bf2c76a7-8c3f-470e-bdbc-c6927854b3f4",
+    "serviceId": "f33aa9cd-d13e-4528-950b-332c71ceb45c",
+    "name": "Standard",
+    "name_bn": "স্ট্যান্ডার্ড",
+    "tier": "standard",
+    "price": "599",
+    "features": [
+      "4 platforms",
+      "20 posts/month",
+      "Custom graphics",
+      "Story content",
+      "Community management",
+      "Bi-weekly reports"
+    ],
+    "features_bn": [
+      "৪টি প্ল্যাটফর্ম",
+      "২০ পোস্ট/মাস",
+      "কাস্টম গ্রাফিক্স",
+      "স্টোরি কন্টেন্ট",
+      "কমিউনিটি ম্যানেজমেন্ট",
+      "পাক্ষিক রিপোর্ট"
+    ],
+    "deliveryDays": 5,
+    "revisions": 3,
+    "isPopular": true,
+    "createdAt": "2026-03-30T03:43:05.645Z"
+  },
+  {
+    "id": "af330c04-68fa-4135-b625-e4d11f9607ac",
+    "serviceId": "f33aa9cd-d13e-4528-950b-332c71ceb45c",
+    "name": "Premium",
+    "name_bn": "প্রিমিয়াম",
+    "tier": "premium",
+    "price": "1199",
+    "features": [
+      "All platforms",
+      "Daily posts",
+      "Video content",
+      "Influencer outreach",
+      "Paid ads management",
+      "Weekly strategy calls",
+      "Dedicated manager"
+    ],
+    "features_bn": [
+      "সকল প্ল্যাটফর্ম",
+      "দৈনিক পোস্ট",
+      "ভিডিও কন্টেন্ট",
+      "ইনফ্লুয়েন্সার আউটরিচ",
+      "পেইড অ্যাড ম্যানেজমেন্ট",
+      "সাপ্তাহিক স্ট্র্যাটেজি কল",
+      "ডেডিকেটেড ম্যানেজার"
+    ],
+    "deliveryDays": 7,
+    "revisions": null,
+    "isPopular": false,
+    "createdAt": "2026-03-30T03:43:05.648Z"
+  },
+  {
+    "id": "1cf8686c-b835-4371-a7f8-8fc77b7d71f1",
+    "serviceId": "286d5867-c01f-4f93-aee0-ecea357ea312",
+    "name": "Basic",
+    "name_bn": "বেসিক",
+    "tier": "basic",
+    "price": "599",
+    "features": [
+      "Shopify store setup",
+      "Up to 50 products",
+      "Payment gateway",
+      "Basic theme",
+      "Order management"
+    ],
+    "features_bn": [
+      "Shopify স্টোর সেটআপ",
+      "৫০টি পর্যন্ত পণ্য",
+      "পেমেন্ট গেটওয়ে",
+      "বেসিক থিম",
+      "অর্ডার ম্যানেজমেন্ট"
+    ],
+    "deliveryDays": 7,
+    "revisions": 2,
+    "isPopular": false,
+    "createdAt": "2026-03-30T03:43:05.654Z"
+  },
+  {
+    "id": "c2a47d64-7a3e-480e-8715-b781f0a2800d",
+    "serviceId": "286d5867-c01f-4f93-aee0-ecea357ea312",
+    "name": "Standard",
+    "name_bn": "স্ট্যান্ডার্ড",
+    "tier": "standard",
+    "price": "1499",
+    "features": [
+      "Custom store design",
+      "Up to 500 products",
+      "Multi-payment options",
+      "Inventory system",
+      "Email marketing setup",
+      "5 revisions"
+    ],
+    "features_bn": [
+      "কাস্টম স্টোর ডিজাইন",
+      "৫০০টি পর্যন্ত পণ্য",
+      "মাল্টি-পেমেন্ট অপশন",
+      "ইনভেন্টরি সিস্টেম",
+      "ইমেইল মার্কেটিং সেটআপ",
+      "৫টি রিভিশন"
+    ],
+    "deliveryDays": 14,
+    "revisions": 5,
+    "isPopular": true,
+    "createdAt": "2026-03-30T03:43:05.656Z"
+  },
+  {
+    "id": "f83b4bea-020e-40d6-b302-c6611e84aa87",
+    "serviceId": "286d5867-c01f-4f93-aee0-ecea357ea312",
+    "name": "Premium",
+    "name_bn": "প্রিমিয়াম",
+    "tier": "premium",
+    "price": "3499",
+    "features": [
+      "Fully custom platform",
+      "Unlimited products",
+      "Advanced analytics",
+      "Multi-currency support",
+      "API integrations",
+      "Subscription/recurring",
+      "Ongoing support"
+    ],
+    "features_bn": [
+      "সম্পূর্ণ কাস্টম প্ল্যাটফর্ম",
+      "আনলিমিটেড পণ্য",
+      "অ্যাডভান্সড অ্যানালিটিক্স",
+      "মাল্টি-কারেন্সি সাপোর্ট",
+      "API ইন্টিগ্রেশন",
+      "সাবস্ক্রিপশন/রিকারিং",
+      "চলমান সাপোর্ট"
+    ],
+    "deliveryDays": 30,
+    "revisions": null,
+    "isPopular": false,
+    "createdAt": "2026-03-30T03:43:05.659Z"
+  }
+]
