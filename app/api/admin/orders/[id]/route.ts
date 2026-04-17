@@ -1,19 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { requireAdmin } from "@lib/auth";
-import { findOrderById, updateOrder } from "@lib/firestore";
+import { findLocalOrderById, updateLocalOrder } from "@lib/local-orders-store";
 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   const { user, error, status } = await requireAdmin(req);
   if (!user) return NextResponse.json({ error }, { status });
-
-  try {
-    const order = await findOrderById(params.id);
-    if (!order) return NextResponse.json({ error: "Order not found" }, { status: 404 });
-    return NextResponse.json(order);
-  } catch (err) {
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
-  }
+  const order = findLocalOrderById(params.id);
+  if (!order) return NextResponse.json({ error: "Order not found" }, { status: 404 });
+  return NextResponse.json(order);
 }
 
 export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
@@ -28,11 +23,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
   const result = patchSchema.safeParse(body);
   if (!result.success) return NextResponse.json({ error: "Validation failed" }, { status: 400 });
 
-  try {
-    const updated = await updateOrder(params.id, result.data);
-    if (!updated) return NextResponse.json({ error: "Order not found" }, { status: 404 });
-    return NextResponse.json(updated);
-  } catch (err) {
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
-  }
+  const updated = updateLocalOrder(params.id, result.data);
+  if (!updated) return NextResponse.json({ error: "Order not found" }, { status: 404 });
+  return NextResponse.json(updated);
 }

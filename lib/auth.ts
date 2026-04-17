@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import { findUserById } from "./firestore";
 import { NextRequest } from "next/server";
 
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -27,19 +26,14 @@ export async function getAuthUser(req: NextRequest) {
   if (!token) return null;
   try {
     const payload = verifyToken(token);
-    // ── Local admin bypass — no Firebase call needed ──
-    if (payload.id === "local-admin-001") {
-      return { id: payload.id, name: "Admin", email: payload.email, role: "admin", phone: null, avatarUrl: null };
-    }
-    const user = await findUserById(payload.id);
-    if (!user) return null;
+    // All users are the local admin — JWT-only authentication
     return {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      phone: user.phone ?? null,
-      avatarUrl: user.avatarUrl ?? null,
+      id: payload.id,
+      name: "Admin",
+      email: payload.email,
+      role: payload.role,
+      phone: null,
+      avatarUrl: null,
     };
   } catch {
     return null;

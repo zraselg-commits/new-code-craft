@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
-import { listServices, listPublishedPosts } from "@lib/firestore";
+import { getActiveLocalServices } from "@lib/local-services-store";
+import { listLocalPublishedPosts } from "@lib/local-blog-store";
 
 const BASE_URL = "https://codecraftbd.info";
 
@@ -18,6 +19,10 @@ const STATIC_ROUTES = [
   { url: "/privacy",   priority: 0.3, changeFrequency: "yearly"  as const },
 ];
 
+const langs = (url: string) => ({
+  languages: { bn: `${BASE_URL}${url}`, en: `${BASE_URL}${url}`, "x-default": `${BASE_URL}${url}` },
+});
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
@@ -26,54 +31,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: now,
     changeFrequency,
     priority,
-    alternates: {
-      languages: {
-        "bn": `${BASE_URL}${url}`,
-        "en": `${BASE_URL}${url}`,
-        "x-default": `${BASE_URL}${url}`,
-      },
-    },
+    alternates: langs(url),
   }));
 
-  let serviceEntries: MetadataRoute.Sitemap = [];
-  try {
-    const allServices = await listServices(true);
-    serviceEntries = allServices.map((s) => ({
-      url: `${BASE_URL}/services/${s.slug}`,
-      lastModified: s.createdAt ? new Date(s.createdAt) : now,
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-      alternates: {
-        languages: {
-          "bn": `${BASE_URL}/services/${s.slug}`,
-          "en": `${BASE_URL}/services/${s.slug}`,
-          "x-default": `${BASE_URL}/services/${s.slug}`,
-        },
-      },
-    }));
-  } catch {
-    // Firestore unavailable during static build
-  }
+  const serviceEntries: MetadataRoute.Sitemap = getActiveLocalServices().map((s) => ({
+    url: `${BASE_URL}/services/${s.slug}`,
+    lastModified: s.createdAt ? new Date(s.createdAt) : now,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+    alternates: langs(`/services/${s.slug}`),
+  }));
 
-  let blogEntries: MetadataRoute.Sitemap = [];
-  try {
-    const publishedPosts = await listPublishedPosts();
-    blogEntries = publishedPosts.map((p) => ({
-      url: `${BASE_URL}/blog/${p.slug}`,
-      lastModified: p.updatedAt ? new Date(p.updatedAt) : p.publishedAt ? new Date(p.publishedAt) : now,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-      alternates: {
-        languages: {
-          "bn": `${BASE_URL}/blog/${p.slug}`,
-          "en": `${BASE_URL}/blog/${p.slug}`,
-          "x-default": `${BASE_URL}/blog/${p.slug}`,
-        },
-      },
-    }));
-  } catch {
-    // Firestore unavailable during static build
-  }
+  const blogEntries: MetadataRoute.Sitemap = listLocalPublishedPosts().map((p) => ({
+    url: `${BASE_URL}/blog/${p.slug}`,
+    lastModified: p.updatedAt ? new Date(p.updatedAt) : p.publishedAt ? new Date(p.publishedAt) : now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+    alternates: langs(`/blog/${p.slug}`),
+  }));
 
   return [...staticEntries, ...serviceEntries, ...blogEntries];
 }

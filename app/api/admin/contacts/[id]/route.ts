@@ -1,15 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@lib/auth";
-import { getFirestoreDb } from "@lib/firebase-admin";
+import { findLocalContactById, deleteLocalContact } from "@lib/local-contacts-store";
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   const { user, error, status } = await requireAdmin(req);
   if (!user) return NextResponse.json({ error }, { status });
-  try {
-    const db = getFirestoreDb();
-    await db.collection("contacts").doc(params.id).delete();
-    return NextResponse.json({ ok: true });
-  } catch (err) {
-    return NextResponse.json({ error: String(err) }, { status: 500 });
-  }
+  const contact = findLocalContactById(params.id);
+  if (!contact) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  return NextResponse.json(contact);
+}
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const { user, error, status } = await requireAdmin(req);
+  if (!user) return NextResponse.json({ error }, { status });
+  const deleted = deleteLocalContact(params.id);
+  if (!deleted) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  return NextResponse.json({ success: true });
 }

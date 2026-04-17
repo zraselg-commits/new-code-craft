@@ -69,6 +69,11 @@ export function getActiveLocalServices(): LocalService[] {
   return readLocalServices().filter((s) => s.isActive !== false);
 }
 
+export function findLocalService(slug: string): LocalService | null {
+  return readLocalServices().find((s) => s.slug === slug && s.isActive !== false) ?? null;
+}
+
+
 /* ── Packages ────────────────────────────────────────────────────── */
 export function readLocalPackages(serviceId?: string): LocalPackage[] {
   ensure(PACKAGES_FILE, []);
