@@ -7,6 +7,7 @@ import {
   LayoutDashboard, Layers, ShoppingBag, Users, BookOpen,
   LogOut, Menu, ChevronRight, Globe, Briefcase, MessageSquare,
   Settings, UserCheck, BarChart3, X, Bell, Search,
+  SearchIcon, Image as ImageIcon, LineChart, ArrowLeftRight, Bot,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { cn } from "@/lib/utils";
@@ -17,6 +18,7 @@ const navGroups = [
     label: "Main",
     items: [
       { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
+      { to: "/admin/analytics", label: "Analytics", icon: LineChart, exact: false },
     ],
   },
   {
@@ -26,6 +28,15 @@ const navGroups = [
       { to: "/admin/blog", label: "Blog Posts", icon: BookOpen, exact: false },
       { to: "/admin/portfolio", label: "Portfolio", icon: Briefcase, exact: false },
       { to: "/admin/team", label: "Team", icon: UserCheck, exact: false },
+      { to: "/admin/media", label: "Media Library", icon: ImageIcon, exact: false },
+    ],
+  },
+  {
+    label: "SEO",
+    items: [
+      { to: "/admin/seo", label: "SEO Manager", icon: SearchIcon, exact: true },
+      { to: "/admin/seo/redirects", label: "Redirects", icon: ArrowLeftRight, exact: false },
+      { to: "/admin/seo/robots", label: "Robots.txt", icon: Bot, exact: false },
     ],
   },
   {

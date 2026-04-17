@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Playfair_Display, Hind_Siliguri } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
+import AnalyticsBeacon from "@/components/AnalyticsBeacon";
 import NextTopLoader from "nextjs-toploader";
 import * as fs from "fs";
 import * as path from "path";
@@ -20,6 +21,15 @@ const playfair = Playfair_Display({
   display: "swap",
   preload: true,
   variable: "--font-playfair",
+});
+
+// Hind Siliguri — beautiful Unicode Bengali typeface
+const hindSiliguri = Hind_Siliguri({
+  subsets: ["bengali"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  preload: false,        // load on demand; doesn't block LCP
+  variable: "--font-hind-siliguri",
 });
 
 // Read settings at build time for metadata
@@ -239,7 +249,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
         )}
       </head>
-      <body className={inter.className} suppressHydrationWarning>
+      <body className={`${inter.className} ${hindSiliguri.variable} ${playfair.variable}`} suppressHydrationWarning>
         <NextTopLoader color="#f97316" height={3} showSpinner={false} easing="ease" speed={200} />
         <Providers>{children}</Providers>
         <WhatsAppWidget
@@ -247,6 +257,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           agentName={s.siteName || 'Code Craft BD'}
           position="left"
         />
+        <AnalyticsBeacon />
+        {/* Service Worker — production only; dev uses Next.js HMR */}
+        <script dangerouslySetInnerHTML={{ __html: `if('serviceWorker' in navigator && location.hostname !== 'localhost' && !location.hostname.match(/^192\\.168\\.|^10\\.|^172\\.(1[6-9]|2[0-9]|3[01])\\./)){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').then(r=>{r.addEventListener('updatefound',()=>{const w=r.installing;w&&w.addEventListener('statechange',()=>{if(w.state==='installed'&&navigator.serviceWorker.controller){w.postMessage({type:'SKIP_WAITING'})}})})}).catch(()=>{});})}` }} />
       </body>
     </html>
   );

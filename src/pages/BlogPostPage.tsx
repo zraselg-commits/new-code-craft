@@ -2,6 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import NextImage from "next/image";
 import { useParams } from "next/navigation";
 import { Calendar, Tag, ArrowLeft, User, Clock } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -35,19 +36,33 @@ function estimateReadTime(content: string) {
   return Math.max(1, Math.ceil(words / 200));
 }
 
-function MarkdownContent({ content }: { content: string }) {
+/**
+ * Renders blog post content.
+ * Auto-detects format: if content starts with "<" it is treated as HTML
+ * (output from TipTap), otherwise it is rendered as Markdown.
+ */
+function PostContent({ content }: { content: string }) {
   const [html, setHtml] = useState("");
 
   useEffect(() => {
-    Promise.all([import("marked"), import("dompurify")]).then(
-      ([{ marked }, DOMPurifyModule]) => {
+    const isHtml = content.trimStart().startsWith("<");
+    if (isHtml) {
+      import("dompurify").then((DOMPurifyModule) => {
         const DOMPurify = DOMPurifyModule.default;
-        const raw = marked(content);
-        const resolved = typeof raw === "string" ? raw : "";
-        const clean = DOMPurify.sanitize(resolved, { USE_PROFILES: { html: true } });
+        const clean = DOMPurify.sanitize(content, { USE_PROFILES: { html: true } });
         setHtml(clean);
-      }
-    );
+      });
+    } else {
+      Promise.all([import("marked"), import("dompurify")]).then(
+        ([{ marked }, DOMPurifyModule]) => {
+          const DOMPurify = DOMPurifyModule.default;
+          const raw = marked(content);
+          const resolved = typeof raw === "string" ? raw : "";
+          const clean = DOMPurify.sanitize(resolved, { USE_PROFILES: { html: true } });
+          setHtml(clean);
+        }
+      );
+    }
   }, [content]);
 
   if (!html) {
@@ -127,11 +142,15 @@ export default function BlogPostPage() {
           {post && (
             <article data-testid="blog-post-content">
               {post.coverImage && (
-                <div className="rounded-2xl overflow-hidden mb-8 aspect-video">
-                  <img
+                <div className="rounded-2xl overflow-hidden mb-8 aspect-video relative">
+                  <NextImage
                     src={post.coverImage}
                     alt={post.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 896px"
+                    className="object-cover"
+                    unoptimized={post.coverImage.startsWith("/uploads/") || post.coverImage.startsWith("http")}
                   />
                 </div>
               )}
@@ -177,7 +196,7 @@ export default function BlogPostPage() {
                 </p>
               )}
 
-              <MarkdownContent content={post.content} />
+              <PostContent content={post.content} />
             </article>
           )}
         </div>

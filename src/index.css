@@ -107,6 +107,49 @@
   html {
     scroll-behavior: smooth;
   }
+
+  /* ── Bengali font (Hind Siliguri) ─────────────────────────────── */
+  /* Applied when lang switches to 'bn' via BengaliFontSync          */
+  body.lang-bn {
+    font-family: var(--font-hind-siliguri, 'Hind Siliguri'), 'Noto Sans Bengali', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Only override font-family on text elements — NOT layout divs */
+  body.lang-bn p,
+  body.lang-bn span,
+  body.lang-bn h1, body.lang-bn h2, body.lang-bn h3, body.lang-bn h4, body.lang-bn h5, body.lang-bn h6,
+  body.lang-bn li, body.lang-bn label, body.lang-bn button,
+  body.lang-bn a, body.lang-bn input, body.lang-bn textarea,
+  body.lang-bn th, body.lang-bn td, body.lang-bn nav,
+  body.lang-bn section, body.lang-bn article, body.lang-bn header, body.lang-bn footer {
+    font-family: var(--font-hind-siliguri, 'Hind Siliguri'), 'Noto Sans Bengali', sans-serif;
+  }
+
+  /* Bengali headings — taller line-height, semibold */
+  body.lang-bn h1, body.lang-bn h2, body.lang-bn h3, body.lang-bn h4 {
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: 0.005em;
+  }
+
+  /* Bengali body text — relaxed line-height */
+  body.lang-bn p, body.lang-bn li, body.lang-bn label, body.lang-bn span {
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+  }
+
+  /* Bengali brand / gradient text */
+  body.lang-bn .gradient-text {
+    font-weight: 700;
+  }
+
+  /* Bengali section headings */
+  body.lang-bn .section-heading {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
 }
 
 @layer components {

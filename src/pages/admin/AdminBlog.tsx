@@ -7,7 +7,6 @@ import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import {
   Dialog,
@@ -31,6 +30,7 @@ import { Plus, Pencil, Trash2, Eye, EyeOff } from "lucide-react";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { BilingualField } from "@/components/admin/BilingualField";
 import { ImageUploadField } from "@/components/admin/ImageUploadField";
+import RichTextEditor from "@/components/admin/RichTextEditor";
 
 interface BlogPost {
   id: string;
@@ -266,7 +266,7 @@ export default function AdminBlog() {
       )}
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl max-h-[92vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{editPost ? "Edit Post" : "New Blog Post"}</DialogTitle>
           </DialogHeader>
@@ -306,15 +306,12 @@ export default function AdminBlog() {
               placeholderBn="ব্লগ তালিকা পেজে দেখানো সংক্ষিপ্ত বিবরণ..."
             />
             <div className="space-y-1.5">
-              <Label htmlFor="post-content">Content (Markdown supported)</Label>
-              <Textarea
-                id="post-content"
-                data-testid="input-post-content"
+              <Label>Content</Label>
+              <RichTextEditor
                 value={form.content}
-                onChange={(e) => setForm((f) => ({ ...f, content: e.target.value }))}
-                placeholder="Write your post in Markdown...&#10;&#10;# Heading&#10;&#10;**Bold**, *italic*, [links](https://example.com)..."
-                rows={12}
-                className="font-mono text-sm"
+                onChange={(html) => setForm((f) => ({ ...f, content: html }))}
+                placeholder="Write your post content here... Use the toolbar for formatting, or switch to HTML/Code for raw editing."
+                minHeight={400}
               />
             </div>
             <ImageUploadField

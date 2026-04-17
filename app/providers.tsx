@@ -10,6 +10,7 @@ import { CurrencyProvider } from "@/contexts/CurrencyContext";
 import { CartProvider } from "@/contexts/CartContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { BengaliFontSync } from "@/components/BengaliFontSync";
 import { apiFetch } from "@/lib/api";
 
 async function defaultQueryFn({ queryKey }: { queryKey: readonly unknown[] }) {
@@ -46,6 +47,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <LanguageProvider>
+          <BengaliFontSync />
           <CurrencyProvider>
             <AuthProvider>
               <CartProvider>

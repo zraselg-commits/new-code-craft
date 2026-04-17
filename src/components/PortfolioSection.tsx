@@ -22,12 +22,12 @@ const PortfolioSection = () => {
   const lv = useLangValue();
 
   const { data: items = [] } = useQuery<PortfolioItem[]>({
-    queryKey: ["/api/portfolio-preview"],
+    queryKey: ["/api/portfolio"],
     queryFn: async () => {
-      const r = await fetch("/api/admin/portfolio");
+      const r = await fetch("/api/portfolio");
       if (!r.ok) return [];
       const all: PortfolioItem[] = await r.json();
-      return all.slice(0, 4); // show first 4 on homepage
+      return all.filter((p: PortfolioItem & { active?: boolean }) => p.active !== false).slice(0, 4); // show first 4 on homepage
     },
     staleTime: 60_000,
   });

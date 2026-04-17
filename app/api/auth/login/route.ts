@@ -1,8 +1,9 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
 import { signToken } from "@lib/auth";
 import { findUserByEmail } from "@lib/firestore";
+import { checkRateLimit, resetRateLimit } from "@lib/rate-limit";
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -13,10 +14,25 @@ const COOKIE_MAX_AGE = 7 * 24 * 60 * 60;
 
 // Local admin credentials for dev without Firebase
 // Set LOCAL_ADMIN_EMAIL + LOCAL_ADMIN_PASSWORD in .env.local to override
-const LOCAL_ADMIN_EMAIL = process.env.LOCAL_ADMIN_EMAIL ?? "admin@codecraftbd.info";
-const LOCAL_ADMIN_PASSWORD = process.env.LOCAL_ADMIN_PASSWORD ?? "admin123";
+const LOCAL_ADMIN_EMAIL = process.env.LOCAL_ADMIN_EMAIL ?? process.env.ADMIN_EMAIL ?? "admin@codecraftbd.info";
+const LOCAL_ADMIN_PASSWORD = process.env.LOCAL_ADMIN_PASSWORD ?? process.env.ADMIN_PASSWORD ?? "admin123";
 
 export async function POST(req: NextRequest) {
+  // Rate limit by IP — max 5 attempts, 15-min lockout
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
+    || req.headers.get("x-real-ip")
+    || "unknown";
+  const rl = checkRateLimit(`login:${ip}`, 5, 15 * 60 * 1000, 15 * 60 * 1000);
+  if (!rl.allowed) {
+    return NextResponse.json(
+      { error: `Too many login attempts. Try again in ${Math.ceil((rl.retryAfter ?? 900) / 60)} minutes.` },
+      {
+        status: 429,
+        headers: { "Retry-After": String(rl.retryAfter ?? 900) },
+      }
+    );
+  }
+
   const body = await req.json().catch(() => null);
   const result = loginSchema.safeParse(body);
   if (!result.success) {
@@ -26,6 +42,7 @@ export async function POST(req: NextRequest) {
 
   // ── Local admin bypass (works without Firebase) ──
   if (email === LOCAL_ADMIN_EMAIL && password === LOCAL_ADMIN_PASSWORD) {
+    resetRateLimit(`login:${ip}`);
     const fakeAdminId = "local-admin-001";
     const token = signToken({ id: fakeAdminId, email, role: "admin" });
     const res = NextResponse.json({
@@ -35,7 +52,7 @@ export async function POST(req: NextRequest) {
     res.cookies.set("rc_auth_token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
+      sameSite: "strict",
       maxAge: COOKIE_MAX_AGE,
       path: "/",
     });

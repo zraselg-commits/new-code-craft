@@ -1,6 +1,7 @@
 import { TrendingUp, Users, FolderKanban, Clock } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCountUp } from "@/hooks/useCountUp";
+import { useQuery } from "@tanstack/react-query";
 
 const CountUpStat = ({ end, suffix = "", label, icon: Icon, color }: {
   end: number; suffix?: string; label: string; icon: any; color: string;
@@ -17,13 +18,34 @@ const CountUpStat = ({ end, suffix = "", label, icon: Icon, color }: {
   );
 };
 
+function parseStat(raw: string | undefined, fallbackEnd: number, fallbackSuffix: string) {
+  if (!raw) return { end: fallbackEnd, suffix: fallbackSuffix };
+  const num = parseInt(raw.replace(/[^0-9]/g, ""), 10);
+  const suffix = raw.replace(/[0-9]/g, "").trim();
+  return { end: isNaN(num) ? fallbackEnd : num, suffix: suffix || fallbackSuffix };
+}
+
 const StatsSection = () => {
   const { t } = useLanguage();
 
+  const { data: settings } = useQuery<Record<string, string>>({
+    queryKey: ["/api/settings-public"],
+    queryFn: async () => {
+      const r = await fetch("/api/settings-public");
+      if (!r.ok) return {};
+      return r.json();
+    },
+    staleTime: 60_000,
+  });
+
+  const projStat = parseStat(settings?.statsProjects, 50, "+");
+  const cliStat  = parseStat(settings?.statsClients, 30, "+");
+  const satStat  = parseStat(settings?.statsSatisfaction, 99, "%");
+
   const stats = [
-    { icon: FolderKanban, end: 50, suffix: "+", label: t.statsProjects, color: "text-primary" },
-    { icon: Users, end: 30, suffix: "+", label: t.statsClients, color: "text-secondary" },
-    { icon: TrendingUp, end: 99, suffix: "%", label: t.statsSatisfaction, color: "text-primary" },
+    { icon: FolderKanban, end: projStat.end, suffix: projStat.suffix, label: t.statsProjects, color: "text-primary" },
+    { icon: Users,        end: cliStat.end,  suffix: cliStat.suffix,  label: t.statsClients,  color: "text-secondary" },
+    { icon: TrendingUp,   end: satStat.end,  suffix: satStat.suffix,  label: t.statsSatisfaction, color: "text-primary" },
     { icon: Clock, end: 24, suffix: "/7", label: t.statsSupport, color: "text-secondary" },
   ];
 
