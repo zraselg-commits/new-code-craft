@@ -49,3 +49,4 @@
 {"ts":1776437228221,"path":"/","referrer":"direct","device":"desktop","ua":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"}
 {"ts":1776437248788,"path":"/portfolio","referrer":"direct","device":"desktop","ua":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"}
 {"ts":1776437989295,"path":"/portfolio","referrer":"http://localhost:3000/portfolio","device":"desktop","ua":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"}
+{"ts":1776438351328,"path":"/portfolio","referrer":"http://localhost:3000/portfolio","device":"desktop","ua":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"}

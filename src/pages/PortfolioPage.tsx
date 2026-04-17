@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import {
-  X, TrendingUp, ArrowRight, Tag,
+  X, TrendingUp, ArrowRight, Tag, ChevronDown,
   Globe, ShoppingCart, Smartphone, Brain, PenTool, BarChart3,
   Layers, RefreshCw, ExternalLink,
 } from "lucide-react";
@@ -69,6 +69,8 @@ function ProjectModal({
   const featuresDisplay: string[] = project.features_bn?.length
     ? project.features.map((f, i) => lv(f, project.features_bn?.[i]))
     : project.features;
+
+  const [featuresOpen, setFeaturesOpen] = useState(true);
 
   return (
     <div
@@ -164,15 +166,31 @@ function ProjectModal({
           <p className="text-foreground/80 leading-relaxed mb-6 text-sm md:text-base">{description}</p>
 
           {featuresDisplay.length > 0 && (
-            <div className="mb-6">
-              <h3 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wider" suppressHydrationWarning>{lv("Key Features", "\u09ae\u09c2\u09b2 \u09ac\u09c8\u09b6\u09bf\u09b7\u09cd\u099f\u09cd\u09af")}</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {featuresDisplay.map((f, i) => (
-                  <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                    {f}
-                  </div>
-                ))}
+            <div className="mb-6 border border-border/40 rounded-xl overflow-hidden">
+              <button
+                onClick={() => setFeaturesOpen((o) => !o)}
+                className="w-full flex items-center justify-between px-4 py-3 bg-muted/30 hover:bg-muted/50 transition-colors text-left"
+              >
+                <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider" suppressHydrationWarning>
+                  {lv("Key Features", "মূল বৈশিষ্ট্য")}
+                </h3>
+                <ChevronDown
+                  size={16}
+                  className={`text-muted-foreground transition-transform duration-300 ${featuresOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+              <div
+                className="overflow-hidden transition-all duration-300 ease-in-out"
+                style={{ maxHeight: featuresOpen ? `${featuresDisplay.length * 36 + 24}px` : "0px" }}
+              >
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-4">
+                  {featuresDisplay.map((f, i) => (
+                    <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                      {f}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           )}

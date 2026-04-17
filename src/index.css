@@ -322,12 +322,16 @@
   }
 
   /* Portfolio modal — infinite screenshot scroll */
+  /* The wrapper contains 2 images stacked (each 600px) = 1200px total  */
+  /* translateY(-50%) scrolls exactly one image height for seamless loop */
   .animate-scroll-banner {
     animation: scroll-banner linear infinite;
+    /* height is 2 × image height so the clip container can show one at a time */
+    height: 1200px; /* 2 × 600px image height */
   }
 
   @keyframes scroll-banner {
     0%   { transform: translateY(0); }
-    100% { transform: translateY(-50%); }
+    100% { transform: translateY(-600px); /* exactly one image height */ }
   }
 }

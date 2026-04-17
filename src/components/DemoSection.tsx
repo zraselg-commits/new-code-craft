@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-import { ExternalLink, TrendingUp, ArrowRight, X, Tag,
+import { ExternalLink, TrendingUp, ArrowRight, X, Tag, ChevronDown,
   Globe, ShoppingCart, Smartphone, Brain, PenTool, BarChart3, Layers,
 } from "lucide-react";
 import Link from "next/link";
@@ -48,6 +48,8 @@ function ProjectModal({
     ? project.features.map((f, i) => lv(f, project.features_bn?.[i]))
     : project.features ?? [];
 
+  const [featuresOpen, setFeaturesOpen] = useState(true);
+
   return (
     <div
       className="fixed inset-0 z-[70] bg-black/80 backdrop-blur-xl flex items-center justify-center p-4 animate-fade-in"
@@ -65,8 +67,8 @@ function ProjectModal({
           <X size={16} />
         </button>
 
-        {/* Infinite-scroll screenshot banner */}
-        <div className="relative h-52 md:h-72 overflow-hidden rounded-t-2xl bg-muted/20 group/banner">
+        {/* Scrolling screenshot banner */}
+        <div className="relative h-56 md:h-72 overflow-hidden rounded-t-2xl bg-muted/20 group/banner">
           {project.image ? (
             <>
               <div className="absolute inset-x-0 top-0 animate-scroll-banner will-change-transform"
@@ -126,17 +128,31 @@ function ProjectModal({
           <p className="text-foreground/80 leading-relaxed mb-6 text-sm md:text-base" suppressHydrationWarning>{description}</p>
 
           {featuresDisplay.length > 0 && (
-            <div className="mb-6">
-              <h3 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wider" suppressHydrationWarning>
-                {lv("Key Features", "মূল বৈশিষ্ট্য")}
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {featuresDisplay.map((f, i) => (
-                  <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                    <span suppressHydrationWarning>{f}</span>
-                  </div>
-                ))}
+            <div className="mb-6 border border-border/40 rounded-xl overflow-hidden">
+              <button
+                onClick={() => setFeaturesOpen((o) => !o)}
+                className="w-full flex items-center justify-between px-4 py-3 bg-muted/30 hover:bg-muted/50 transition-colors text-left"
+              >
+                <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider" suppressHydrationWarning>
+                  {lv("Key Features", "মূল বৈশিষ্ট্য")}
+                </h3>
+                <ChevronDown
+                  size={16}
+                  className={`text-muted-foreground transition-transform duration-300 ${featuresOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+              <div
+                className="overflow-hidden transition-all duration-300 ease-in-out"
+                style={{ maxHeight: featuresOpen ? `${featuresDisplay.length * 36 + 24}px` : "0px" }}
+              >
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-4">
+                  {featuresDisplay.map((f, i) => (
+                    <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                      <span suppressHydrationWarning>{f}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           )}
