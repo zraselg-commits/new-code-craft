@@ -141,6 +141,7 @@ export default function RichTextEditor({
   const [showImageDialog, setShowImageDialog] = useState(false);
 
   const editor = useEditor({
+    immediatelyRender: false,    // ← prevents SSR/hydration mismatch error
     extensions: [
       StarterKit.configure({
         codeBlock: {
