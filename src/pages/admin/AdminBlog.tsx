@@ -30,7 +30,20 @@ import { Plus, Pencil, Trash2, Eye, EyeOff } from "lucide-react";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { BilingualField } from "@/components/admin/BilingualField";
 import { ImageUploadField } from "@/components/admin/ImageUploadField";
-import RichTextEditor from "@/components/admin/RichTextEditor";
+import dynamic from "next/dynamic";
+
+// Loaded client-side only — TipTap does not support SSR
+const RichTextEditor = dynamic(
+  () => import("@/components/admin/RichTextEditor"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="border border-border rounded-xl bg-muted/20 flex items-center justify-center" style={{ minHeight: 360 }}>
+        <span className="text-sm text-muted-foreground animate-pulse">Loading editor...</span>
+      </div>
+    ),
+  }
+);
 
 interface BlogPost {
   id: string;
