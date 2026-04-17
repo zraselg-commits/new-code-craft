@@ -166,8 +166,9 @@ export default function AdminBlog() {
     setDialogOpen(true);
   };
 
-  const openEdit = (post: BlogPost) => {
+  const openEdit = async (post: BlogPost) => {
     setEditPost(post);
+    // Pre-fill form with what we have (content will load async)
     setForm({
       slug: post.slug,
       title: post.title,
@@ -180,6 +181,16 @@ export default function AdminBlog() {
       published: post.published,
     });
     setDialogOpen(true);
+    // Fetch full post content (list API omits content for performance)
+    try {
+      const r = await apiFetch(`/api/admin/blog/${post.id}`);
+      if (r.ok) {
+        const full = await r.json();
+        setForm((f) => ({ ...f, content: full.content ?? "" }));
+      }
+    } catch {
+      // If fetch fails, editor starts empty — user can re-enter content
+    }
   };
 
   const handleSubmit = () => {

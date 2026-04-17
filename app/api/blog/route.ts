@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { listPublishedPosts, findUserById } from "@lib/firestore";
-import { getLocalBlogPosts } from "@lib/local-data";
+import { listLocalPublishedPosts } from "@lib/local-blog-store";
 
 export const revalidate = 3600;
 
@@ -30,10 +30,10 @@ export async function GET() {
       headers: { "Cache-Control": "public, max-age=60, s-maxage=3600, stale-while-revalidate=86400" },
     });
   } catch (error) {
-    // ── Firebase not configured — fall back to local db-export.json ──
-    console.warn("Blog: Firebase unavailable, falling back to local data.", String(error));
+    // Firebase not configured — fall back to local file-based store
+    console.warn("Blog: Firebase unavailable, using local blog store.", String(error));
     try {
-      const localPosts = getLocalBlogPosts().map((p) => ({
+      const localPosts = listLocalPublishedPosts().map((p) => ({
         id: p.id,
         slug: p.slug,
         title: p.title,
@@ -47,8 +47,9 @@ export async function GET() {
       return NextResponse.json(localPosts);
     } catch (localErr) {
       console.error("Local blog fallback failed:", localErr);
-      return NextResponse.json({ error: "Failed to fetch posts" }, { status: 500 });
+      return NextResponse.json([], { status: 200 });
     }
   }
 }
+
 

@@ -139,7 +139,7 @@ export function getLocalBlogPosts() {
       published: p.published,
       publishedAt: p.published_at ?? null,
       authorId: p.author_id ?? null,
-      authorName: "rasel.cloud Team",
+      authorName: "Code Craft BD Team",
       createdAt: p.created_at,
       updatedAt: p.updated_at,
     }));
