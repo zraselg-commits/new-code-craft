@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-import { ExternalLink, TrendingUp, ArrowRight, X, Tag, ChevronDown,
+import {
+  ExternalLink, TrendingUp, ArrowRight, X, Tag, ChevronDown, Monitor,
   Globe, ShoppingCart, Smartphone, Brain, PenTool, BarChart3, Layers,
 } from "lucide-react";
 import Link from "next/link";
@@ -24,14 +25,49 @@ interface PortfolioItem {
   isActive?: boolean;
 }
 
-/* ── Category → icon map (same as PortfolioPage) ── */
 const ICON_MAP: Record<string, React.ElementType> = {
   "E-Commerce": ShoppingCart, Web: Globe, Mobile: Smartphone,
   AI: Brain, SEO: BarChart3, Design: PenTool, Default: Layers,
 };
 const getIcon = (cat: string) => ICON_MAP[cat] ?? ICON_MAP.Default;
 
-/* ── Detail Modal (identical to PortfolioPage's ProjectModal) ── */
+/* ══ Scrolling Screenshot Banner ════════════════════════════════════════════ */
+function ScrollBanner({ src, alt, height = 280 }: { src: string; alt: string; height?: number }) {
+  if (!src) return null;
+  return (
+    <div
+      className="relative overflow-hidden bg-muted/30"
+      style={{ height }}
+    >
+      {/* Two stacked images for seamless loop */}
+      <div
+        className="absolute inset-x-0 top-0 animate-scroll-banner will-change-transform"
+        style={{ animationDuration: "20s" }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={src}
+          alt={alt}
+          className="w-full block object-cover object-top"
+          style={{ height: "600px" }}
+          loading="lazy"
+        />
+        {/* Duplicate for seamless loop */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={src}
+          alt=""
+          aria-hidden="true"
+          className="w-full block object-cover object-top"
+          style={{ height: "600px" }}
+          loading="lazy"
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ══ Project Detail Modal ════════════════════════════════════════════════════ */
 function ProjectModal({
   project, onClose, lv,
 }: {
@@ -52,41 +88,46 @@ function ProjectModal({
 
   return (
     <div
-      className="fixed inset-0 z-[70] bg-black/80 backdrop-blur-xl flex items-center justify-center p-4 animate-fade-in"
+      className="fixed inset-0 z-[70] bg-black/80 backdrop-blur-xl flex items-center justify-center p-3 md:p-6 animate-fade-in"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl bg-background border border-border/40 shadow-2xl animate-fade-in-up"
+        className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto rounded-2xl bg-background border border-border/40 shadow-2xl animate-fade-in-up"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
+        {/* Close */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-background/80 border border-border/50 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors shadow"
+          className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-background/90 border border-border/50 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors shadow-lg"
         >
           <X size={16} />
         </button>
 
-        {/* Scrolling screenshot banner */}
-        <div className="relative h-56 md:h-72 overflow-hidden rounded-t-2xl bg-muted/20 group/banner">
+        {/* ── Scrolling Screenshot Banner ── */}
+        <div className="relative rounded-t-2xl overflow-hidden group/banner" style={{ height: "280px" }}>
           {project.image ? (
             <>
-              <div className="absolute inset-x-0 top-0 animate-scroll-banner will-change-transform"
-                style={{ animationDuration: "18s", animationTimingFunction: "linear", animationIterationCount: "infinite" }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={project.image} alt={title} className="w-full object-cover object-top" style={{ height: "560px" }} />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={project.image} alt="" className="w-full object-cover object-top" style={{ height: "560px" }} aria-hidden="true" />
+              <ScrollBanner src={project.image} alt={title} height={280} />
+
+              {/* Subtle gradient at bottom */}
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none" />
+
+              {/* Scroll indicator */}
+              <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-black/50 backdrop-blur-sm border border-white/10 text-white/80 text-[10px] font-medium pointer-events-none">
+                <Monitor size={10} />
+                <span suppressHydrationWarning>{lv("Live Preview", "লাইভ প্রিভিউ")}</span>
+                <span className="ml-1 w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent pointer-events-none" />
-              <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 text-white/70 text-[10px] font-medium pointer-events-none">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-                Scrolling Preview
-              </div>
+
+              {/* Hover overlay → open live site */}
               {project.liveUrl && (
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
-                  className="absolute inset-0 flex flex-col items-center justify-center gap-2 opacity-0 group-hover/banner:opacity-100 transition-all duration-300 bg-black/30 backdrop-blur-[2px]"
-                  onClick={(e) => e.stopPropagation()}>
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 opacity-0 group-hover/banner:opacity-100 transition-all duration-300 bg-black/40 backdrop-blur-[2px]"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-500 text-white text-sm font-bold shadow-[0_0_24px_rgba(16,185,129,0.6)] hover:bg-emerald-400 transition-colors">
                     <span className="relative flex h-2.5 w-2.5">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-60" />
@@ -95,40 +136,44 @@ function ProjectModal({
                     <span suppressHydrationWarning>{lv("Open Live Site", "লাইভ সাইট খুলুন")}</span>
                     <ExternalLink size={14} />
                   </div>
-                  <span className="text-white/60 text-xs" suppressHydrationWarning>{lv("Click to visit", "ক্লিক করুন")}</span>
+                  <span className="text-white/70 text-xs" suppressHydrationWarning>
+                    {lv("Click to visit", "ক্লিক করুন")}
+                  </span>
                 </a>
               )}
+
+              {/* Metric badge */}
+              <div className="absolute bottom-4 left-4 z-10 pointer-events-none">
+                <div className="flex items-center gap-2 bg-background/95 backdrop-blur-sm px-3 py-1.5 rounded-full border border-border/40 shadow-lg">
+                  <TrendingUp size={13} className="text-primary" />
+                  <span className="text-sm font-bold text-primary" suppressHydrationWarning>{metric}</span>
+                </div>
+              </div>
             </>
           ) : (
-            <div className="w-full h-full flex items-center justify-center">
+            <div className="w-full h-full flex items-center justify-center bg-muted/30">
               <Icon size={64} className="text-muted-foreground/20" />
             </div>
           )}
-          <div className="absolute bottom-4 left-6 pointer-events-none">
-            <div className="flex items-center gap-2 bg-background/90 backdrop-blur-sm px-4 py-2 rounded-full border border-border/40 shadow-lg">
-              <TrendingUp size={14} className="text-primary" />
-              <span className="text-sm font-bold text-primary" suppressHydrationWarning>{metric}</span>
-            </div>
-          </div>
         </div>
 
         {/* Body */}
-        <div className="p-6 md:p-8">
-          <div className="flex items-start gap-4 mb-4">
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-xs uppercase tracking-widest text-primary font-semibold">{project.category}</span>
-                <span className="text-xs text-muted-foreground">· {project.year}</span>
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground leading-tight" suppressHydrationWarning>{title}</h2>
-              <p className="text-muted-foreground text-sm mt-1" suppressHydrationWarning>{tagline}</p>
-            </div>
+        <div className="p-5 md:p-7">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-xs uppercase tracking-widest text-primary font-semibold">{project.category}</span>
+            <span className="text-xs text-muted-foreground">· {project.year}</span>
           </div>
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground leading-tight mb-1" suppressHydrationWarning>
+            {title}
+          </h2>
+          <p className="text-muted-foreground text-sm mt-1 mb-4" suppressHydrationWarning>{tagline}</p>
+          <p className="text-foreground/80 leading-relaxed mb-5 text-sm md:text-base" suppressHydrationWarning>
+            {description}
+          </p>
 
-          <p className="text-foreground/80 leading-relaxed mb-6 text-sm md:text-base" suppressHydrationWarning>{description}</p>
-
+          {/* Collapsible Key Features */}
           {featuresDisplay.length > 0 && (
-            <div className="mb-6 border border-border/40 rounded-xl overflow-hidden">
+            <div className="mb-5 border border-border/40 rounded-xl overflow-hidden">
               <button
                 onClick={() => setFeaturesOpen((o) => !o)}
                 className="w-full flex items-center justify-between px-4 py-3 bg-muted/30 hover:bg-muted/50 transition-colors text-left"
@@ -143,12 +188,12 @@ function ProjectModal({
               </button>
               <div
                 className="overflow-hidden transition-all duration-300 ease-in-out"
-                style={{ maxHeight: featuresOpen ? `${featuresDisplay.length * 36 + 24}px` : "0px" }}
+                style={{ maxHeight: featuresOpen ? `${featuresDisplay.length * 40 + 24}px` : "0px" }}
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-4">
                   {featuresDisplay.map((f, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                    <div key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
                       <span suppressHydrationWarning>{f}</span>
                     </div>
                   ))}
@@ -157,10 +202,12 @@ function ProjectModal({
             </div>
           )}
 
+          {/* Tech Stack */}
           {project.tags.length > 0 && (
-            <div className="mb-8">
-              <h3 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wider flex items-center gap-1.5">
-                <Tag size={13} className="text-muted-foreground" /> <span suppressHydrationWarning>{lv("Tech Stack", "প্রযুক্তিসমূহ")}</span>
+            <div className="mb-6">
+              <h3 className="text-sm font-semibold text-foreground mb-2 uppercase tracking-wider flex items-center gap-1.5">
+                <Tag size={12} className="text-muted-foreground" />
+                <span suppressHydrationWarning>{lv("Tech Stack", "প্রযুক্তিসমূহ")}</span>
               </h3>
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
@@ -170,17 +217,16 @@ function ProjectModal({
             </div>
           )}
 
+          {/* Actions */}
           <div className="flex flex-col gap-3">
             {project.liveUrl && (
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/live w-full inline-flex items-center justify-center gap-3 py-4 rounded-xl
-                  bg-emerald-500 hover:bg-emerald-400
-                  text-white font-bold text-sm tracking-wide
-                  shadow-[0_4px_20px_rgba(16,185,129,0.45)] hover:shadow-[0_6px_32px_rgba(16,185,129,0.7)]
-                  border border-emerald-400/40 hover:border-emerald-300
+                className="group/live w-full inline-flex items-center justify-center gap-3 py-3.5 rounded-xl
+                  bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-sm tracking-wide
+                  shadow-[0_4px_20px_rgba(16,185,129,0.4)] hover:shadow-[0_6px_32px_rgba(16,185,129,0.65)]
                   transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
               >
                 <span className="relative flex h-3 w-3">
@@ -188,15 +234,22 @@ function ProjectModal({
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-white" />
                 </span>
                 <span suppressHydrationWarning>{lv("🚀 Open Live Site", "🚀 লাইভ সাইট খুলুন")}</span>
-                <ExternalLink size={16} className="transition-transform group-hover/live:translate-x-1 group-hover/live:-translate-y-1" />
+                <ExternalLink size={15} className="transition-transform group-hover/live:translate-x-1 group-hover/live:-translate-y-1" />
               </a>
             )}
             <div className="flex flex-col sm:flex-row gap-3">
-              <a href="/contact" className="btn-primary-glow flex-1 inline-flex items-center justify-center gap-2 text-sm" suppressHydrationWarning>
+              <a
+                href="/contact"
+                className="btn-primary-glow flex-1 inline-flex items-center justify-center gap-2 text-sm"
+                suppressHydrationWarning
+              >
                 {lv("Build Something Similar", "একই ধরনের কিছু তৈরি করুন")} <ArrowRight size={14} />
               </a>
-              <button onClick={onClose}
-                className="flex-1 px-4 py-2 rounded-xl border border-border/60 text-sm text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all" suppressHydrationWarning>
+              <button
+                onClick={onClose}
+                className="flex-1 px-4 py-2.5 rounded-xl border border-border/60 text-sm text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all"
+                suppressHydrationWarning
+              >
                 ← {lv("Back", "ফিরে যান")}
               </button>
             </div>
@@ -207,7 +260,7 @@ function ProjectModal({
   );
 }
 
-/* ══ DemoSection ═══════════════════════════════════════════════════════════ */
+/* ══ DemoSection (card grid) ═════════════════════════════════════════════════ */
 const DemoSection = () => {
   const { t } = useLanguage();
   const lv = useLangValue();
@@ -215,7 +268,6 @@ const DemoSection = () => {
   const [selected, setSelected] = useState<PortfolioItem | null>(null);
   const closeModal = useCallback(() => setSelected(null), []);
 
-  // Lock body scroll when modal open
   useEffect(() => {
     if (!selected) return;
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeModal(); };
@@ -252,7 +304,7 @@ const DemoSection = () => {
 
   return (
     <>
-      <section id="demos" className="py-10 md:py-14 relative">
+      <section id="demos" className="py-12 md:py-16 relative">
         <div className="absolute inset-0 mesh-gradient opacity-50" />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -284,64 +336,112 @@ const DemoSection = () => {
                 <div
                   key={project.id}
                   onClick={() => setSelected(project)}
-                  className="glass-card-hover group cursor-pointer relative overflow-hidden animate-fade-in-up"
+                  className="glass-card-hover group cursor-pointer relative overflow-hidden rounded-2xl animate-fade-in-up"
                   style={{ animationDelay: `${i * 0.1}s`, animationFillMode: "both" }}
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => e.key === "Enter" && setSelected(project)}
                   aria-label={title}
                 >
-                  {/* Image */}
-                  <div className="h-48 overflow-hidden relative">
-                    <img
-                      src={project.image}
-                      alt={title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+                  {/* ── Scrolling screenshot thumbnail ── */}
+                  <div
+                    className="demo-card-scroll-wrapper relative overflow-hidden bg-muted/20"
+                    style={{ height: "220px" }}
+                  >
+                    {project.image ? (
+                      <>
+                        {/* Scrolling strip */}
+                        <div className="demo-card-scroll absolute inset-x-0 top-0 will-change-transform">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={project.image}
+                            alt={title}
+                            className="w-full block object-cover object-top"
+                            style={{ height: "500px" }}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={project.image}
+                            alt=""
+                            aria-hidden="true"
+                            className="w-full block object-cover object-top"
+                            style={{ height: "500px" }}
+                            loading="lazy"
+                          />
+                        </div>
 
-                    {/* Category badge */}
-                    <span className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-background/80 backdrop-blur-sm border border-border/50 text-[10px] uppercase tracking-wider font-semibold text-primary">
-                      <Icon size={10} /> {project.category}
-                    </span>
+                        {/* Gradient overlay bottom */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent pointer-events-none z-10" />
 
-                    {/* Hover CTA overlay */}
-                    <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="flex items-center gap-2 bg-background/90 backdrop-blur-sm px-5 py-2.5 rounded-full text-sm font-semibold text-foreground shadow-lg translate-y-2 group-hover:translate-y-0 transition-transform duration-300" suppressHydrationWarning>
-                        {lv("View Case Study", "বিস্তারিত দেখুন")} <ArrowRight size={14} />
+                        {/* Category badge */}
+                        <span className="absolute top-3 left-3 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-background/90 backdrop-blur-sm border border-border/50 text-[10px] uppercase tracking-wider font-semibold text-primary shadow-sm">
+                          <Icon size={10} /> {project.category}
+                        </span>
+
+                        {/* Scrolling indicator badge */}
+                        <span className="absolute top-3 right-3 z-20 flex items-center gap-1 px-2 py-1 rounded-full bg-black/50 backdrop-blur-sm text-white/70 text-[9px] font-medium">
+                          <Monitor size={9} />
+                          <span suppressHydrationWarning>{lv("Preview", "প্রিভিউ")}</span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse ml-0.5" />
+                        </span>
+
+                        {/* Hover CTA overlay */}
+                        <div className="absolute inset-0 z-20 bg-primary/15 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                          <div className="flex items-center gap-2 bg-background/95 backdrop-blur-sm px-5 py-2.5 rounded-full text-sm font-semibold text-foreground shadow-lg translate-y-2 group-hover:translate-y-0 transition-transform duration-300" suppressHydrationWarning>
+                            {lv("View Case Study", "বিস্তারিত দেখুন")} <ArrowRight size={14} />
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <Icon size={48} className="text-muted-foreground/20" />
                       </div>
-                    </div>
+                    )}
                   </div>
 
-                  {/* Content */}
-                  <div className="p-8 relative">
+                  {/* Card content */}
+                  <div className="p-5 md:p-6 relative">
+                    {/* Live URL icon */}
                     {project.liveUrl && (
                       <a
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        className="absolute top-5 right-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-primary hover:text-primary/80"
                         onClick={(e) => e.stopPropagation()}
+                        title="Open live site"
                       >
-                        <ExternalLink size={18} className="text-primary" />
+                        <ExternalLink size={16} />
                       </a>
                     )}
 
-                    <h3 className="text-2xl font-bold mt-2 mb-3 text-foreground" suppressHydrationWarning>{title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-4" suppressHydrationWarning>{tagline}</p>
+                    <h3 className="text-xl font-bold mb-2 text-foreground leading-snug pr-6" suppressHydrationWarning>
+                      {title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-2" suppressHydrationWarning>
+                      {tagline}
+                    </p>
 
+                    {/* Metric */}
                     {metric && (
-                      <div className="flex items-center gap-2 mb-5 text-secondary text-sm font-medium" suppressHydrationWarning>
-                        <TrendingUp size={16} /> {metric}
+                      <div className="flex items-center gap-2 mb-4 text-secondary text-sm font-semibold" suppressHydrationWarning>
+                        <TrendingUp size={15} /> {metric}
                       </div>
                     )}
 
-                    <div className="flex flex-wrap gap-2">
+                    {/* Tags row */}
+                    <div className="flex flex-wrap items-center gap-2">
                       {project.tags.slice(0, 3).map((tag) => (
-                        <span key={tag} className="tech-badge text-xs !py-1 !px-3">{tag}</span>
+                        <span key={tag} className="text-xs px-2.5 py-1 rounded-full bg-muted/60 border border-border/50 text-muted-foreground font-medium">
+                          {tag}
+                        </span>
                       ))}
+                      {project.tags.length > 3 && (
+                        <span className="text-xs text-muted-foreground">+{project.tags.length - 3}</span>
+                      )}
+                      <span className="ml-auto text-[10px] text-muted-foreground/60">{project.year}</span>
                     </div>
                   </div>
                 </div>

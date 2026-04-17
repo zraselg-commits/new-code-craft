@@ -89,31 +89,44 @@ function ProjectModal({
           <X size={16} />
         </button>
 
-        {/* ── Infinite-scroll screenshot banner ── */}
-        <div className="relative h-56 md:h-72 overflow-hidden rounded-t-2xl bg-muted/20 group/banner">
+        {/* ── Scrolling screenshot banner ── */}
+        <div
+          className="relative overflow-hidden rounded-t-2xl bg-muted/20 group/banner"
+          style={{ height: "300px" }}
+        >
           {project.image ? (
             <>
-              {/* Scrolling container — image duplicated for seamless loop */}
-              <div className="absolute inset-x-0 top-0 animate-scroll-banner will-change-transform"
-                style={{ animationDuration: "18s", animationTimingFunction: "linear", animationIterationCount: "infinite" }}>
+              {/* Scrolling strip: 2 stacked images for seamless loop */}
+              <div
+                className="absolute inset-x-0 top-0 animate-scroll-banner will-change-transform"
+                style={{ animationDuration: "22s" }}
+              >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={project.image} alt={title}
-                  className="w-full object-cover object-top"
-                  style={{ height: "600px" }} />
+                <img
+                  src={project.image}
+                  alt={title}
+                  className="w-full block object-cover object-top"
+                  style={{ height: "640px" }}
+                />
                 {/* Duplicate for seamless loop */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={project.image} alt=""
-                  className="w-full object-cover object-top"
-                  style={{ height: "600px" }} aria-hidden="true" />
+                <img
+                  src={project.image}
+                  alt=""
+                  aria-hidden="true"
+                  className="w-full block object-cover object-top"
+                  style={{ height: "640px" }}
+                />
               </div>
               {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none" />
               {/* Scroll indicator badge */}
-              <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 text-white/70 text-[10px] font-medium pointer-events-none">
+              <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-black/50 backdrop-blur-sm border border-white/10 text-white/80 text-[10px] font-medium pointer-events-none">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M12 5v14M5 12l7 7 7-7"/>
                 </svg>
                 Scrolling Preview
+                <span className="ml-1 w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               </div>
               {/* Live preview CTA overlay — shows on hover */}
               {project.liveUrl && (
@@ -121,7 +134,7 @@ function ProjectModal({
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute inset-0 flex flex-col items-center justify-center gap-2 opacity-0 group-hover/banner:opacity-100 transition-all duration-300 bg-black/30 backdrop-blur-[2px]"
+                  className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 opacity-0 group-hover/banner:opacity-100 transition-all duration-300 bg-black/40 backdrop-blur-[2px]"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-500 text-white text-sm font-bold shadow-[0_0_24px_rgba(16,185,129,0.6)] hover:bg-emerald-400 transition-colors">
@@ -135,19 +148,19 @@ function ProjectModal({
                   <span className="text-white/60 text-xs" suppressHydrationWarning>{lv("Click to visit", "ক্লিক করতে")}</span>
                 </a>
               )}
+              {/* Metric badge */}
+              <div className="absolute bottom-4 left-4 z-10 pointer-events-none">
+                <div className="flex items-center gap-2 bg-background/95 backdrop-blur-sm px-3 py-1.5 rounded-full border border-border/40 shadow-lg">
+                  <TrendingUp size={13} className="text-primary" />
+                  <span className="text-sm font-bold text-primary" suppressHydrationWarning>{metric}</span>
+                </div>
+              </div>
             </>
           ) : (
             <div className="w-full h-full flex items-center justify-center">
               <Icon size={64} className="text-muted-foreground/20" />
             </div>
           )}
-          {/* Metric badge */}
-          <div className="absolute bottom-4 left-6 pointer-events-none">
-            <div className="flex items-center gap-2 bg-background/90 backdrop-blur-sm px-4 py-2 rounded-full border border-border/40 shadow-lg">
-              <TrendingUp size={14} className="text-primary" />
-              <span className="text-sm font-bold text-primary" suppressHydrationWarning>{metric}</span>
-            </div>
-          </div>
         </div>
 
         {/* Body */}

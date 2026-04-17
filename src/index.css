@@ -321,17 +321,32 @@
     }
   }
 
-  /* Portfolio modal — infinite screenshot scroll */
-  /* The wrapper contains 2 images stacked (each 600px) = 1200px total  */
-  /* translateY(-50%) scrolls exactly one image height for seamless loop */
+  /* Portfolio/Demo modal — infinite screenshot scroll            */
+  /* Wrapper is position:absolute with 2 stacked images.         */
+  /* translateY(-50%) = half the wrapper height = 1 image height */
+  /* This creates a seamless vertical scroll loop.               */
   .animate-scroll-banner {
     animation: scroll-banner linear infinite;
-    /* height is 2 × image height so the clip container can show one at a time */
-    height: 1200px; /* 2 × 600px image height */
   }
 
   @keyframes scroll-banner {
     0%   { transform: translateY(0); }
-    100% { transform: translateY(-600px); /* exactly one image height */ }
+    100% { transform: translateY(-50%); }
+  }
+
+  /* Card thumbnail: smooth scroll on hover, pause at rest */
+  .demo-card-scroll {
+    animation: card-scroll 12s linear infinite;
+    animation-play-state: paused;
+  }
+
+  .demo-card-scroll-wrapper:hover .demo-card-scroll {
+    animation-play-state: running;
+  }
+
+  @keyframes card-scroll {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
   }
 }
+
