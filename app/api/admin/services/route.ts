@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@lib/auth";
+import { revalidatePath } from "next/cache";
 import {
   readLocalServices,
   readLocalPackages,
@@ -44,6 +45,8 @@ export async function POST(req: NextRequest) {
       tags:        Array.isArray(body.tags) ? body.tags : [],
       isActive:    body.isActive !== false,
     });
+    revalidatePath("/services");
+    revalidatePath("/", "layout");
     return NextResponse.json(svc, { status: 201 });
   } catch (err) {
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

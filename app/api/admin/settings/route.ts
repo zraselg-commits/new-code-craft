@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@lib/auth";
+import { revalidatePath } from "next/cache";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -31,8 +32,8 @@ function getDefaults() {
     faviconUrl: "",
     primaryColor: "#ef4444",
     accentColor: "#f97316",
-    footerText: "© 2025 Code Craft BD. All rights reserved.",
-    footerText_bn: "© ২০২৫ কোড ক্রাফট বিডি। সর্বস্বত্ব সংরক্ষিত।",
+    footerText: "© 2026 Code Craft BD. All rights reserved.",
+    footerText_bn: "© ২০২৬ কোড ক্রাফট বিডি। সর্বস্বত্ব সংরক্ষিত।",
     contactEmail: "hello@codecraftbd.info",
     contactPhone: "+880 1700-000000",
     contactAddress: "Dhaka, Bangladesh",
@@ -87,6 +88,8 @@ export async function PUT(req: NextRequest) {
     const updated = { ...current, ...body };
     fs.mkdirSync(path.dirname(SETTINGS_FILE), { recursive: true });
     fs.writeFileSync(SETTINGS_FILE, JSON.stringify(updated, null, 2), "utf-8");
+    // Revalidate ALL pages — admin changes show instantly, no rebuild/restart needed
+    revalidatePath("/", "layout");
     return NextResponse.json(updated);
   } catch (err) {
     return NextResponse.json({ error: String(err) }, { status: 500 });

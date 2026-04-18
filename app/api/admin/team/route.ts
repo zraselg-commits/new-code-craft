@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@lib/auth";
+import { revalidatePath } from "next/cache";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -59,5 +60,7 @@ export async function POST(req: NextRequest) {
   };
   list.push(item);
   writeTeam(list);
+  revalidatePath("/team");
+  revalidatePath("/", "layout");
   return NextResponse.json(item, { status: 201 });
 }
