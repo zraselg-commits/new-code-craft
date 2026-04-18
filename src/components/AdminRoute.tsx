@@ -22,7 +22,7 @@ const AdminRoute = ({ children }: AdminRouteProps) => {
 
   useEffect(() => {
     if (!isLoading && !grace && (!user || user.role !== "admin")) {
-      router.replace("/login?from=" + encodeURIComponent(window.location.pathname));
+      router.replace("/admin/login?from=" + encodeURIComponent(window.location.pathname));
     }
   }, [isLoading, grace, user, router]);
 
