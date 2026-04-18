@@ -5,6 +5,7 @@ import { Providers } from "./providers";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 import AnalyticsBeacon from "@/components/AnalyticsBeacon";
 import NextTopLoader from "nextjs-toploader";
+import AnnouncementBar from "@/components/AnnouncementBar";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -263,7 +264,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className={`${inter.className} ${hindSiliguri.variable} ${playfair.variable}`} suppressHydrationWarning>
         <NextTopLoader color="#f97316" height={3} showSpinner={false} easing="ease" speed={200} />
-        <Providers>{children}</Providers>
+        <Providers>
+          <AnnouncementBar />
+          {children}
+        </Providers>
         <WhatsAppWidget
           waPhone={(s.whatsappNumber || '+8801700000000').replace(/\D/g, '')}
           agentName={s.siteName || 'Code Craft BD'}

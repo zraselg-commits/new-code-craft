@@ -11,6 +11,7 @@ const DemoSection     = lazy(() => import("@/components/DemoSection"));
 const ProcessSection = lazy(() => import("@/components/ProcessSection"));
 const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
 const TechStackSection = lazy(() => import("@/components/TechStackSection"));
+const LatestBlogSection = lazy(() => import("@/components/LatestBlogSection"));
 const ProjectEstimator = lazy(() => import("@/components/ProjectEstimator"));
 const FAQSection = lazy(() => import("@/components/FAQSection"));
 const CTASection = lazy(() => import("@/components/CTASection"));
@@ -172,20 +173,20 @@ const Index = () => {
     queryClient.prefetchQuery({
       queryKey: ["/api/services"],
       queryFn: async () => {
-        const r = await fetch("/api/services");
+        const r = await fetch("/api/services", { cache: "no-store" });
         if (!r.ok) throw new Error("Failed to prefetch services");
         return r.json();
       },
-      staleTime: 5 * 60_000,
+      staleTime: 0,
     });
     queryClient.prefetchQuery({
       queryKey: ["/api/blog"],
       queryFn: async () => {
-        const r = await fetch("/api/blog");
+        const r = await fetch("/api/blog", { cache: "no-store" });
         if (!r.ok) throw new Error("Failed to prefetch blog");
         return r.json();
       },
-      staleTime: 5 * 60_000,
+      staleTime: 0,
     });
   }, [queryClient]);
 
@@ -211,6 +212,10 @@ const Index = () => {
 
       <DeferredSection fallback={<TechStackSkeleton />}>
         <TechStackSection />
+      </DeferredSection>
+
+      <DeferredSection fallback={<div className="py-16" />}>
+        <LatestBlogSection />
       </DeferredSection>
 
       <DeferredSection fallback={<ROISkeleton />}>

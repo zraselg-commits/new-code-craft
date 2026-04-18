@@ -49,11 +49,11 @@ const Navbar = () => {
   const { data: branding } = useQuery<Record<string, string>>({
     queryKey: ["/api/settings-public"],
     queryFn: async () => {
-      const r = await fetch("/api/settings-public");
+      const r = await fetch("/api/settings-public", { cache: "no-store" });
       if (!r.ok) return {};
       return r.json();
     },
-    staleTime: 60_000,
+    staleTime: 0,
   });
   const logoUrl  = branding?.logoUrl  || "";
   const siteName = branding?.siteName || "Code Craft BD";
