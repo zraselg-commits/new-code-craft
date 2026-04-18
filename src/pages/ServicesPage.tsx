@@ -2,7 +2,6 @@
 
 import { ArrowRight, Tag } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -59,14 +58,14 @@ const ServicesPage = () => {
                   data-testid={`card-service-${svc.id}`}
                 >
                   {svc.imageUrl ? (
-                    <div className="w-full h-36 rounded-xl overflow-hidden mb-4 bg-muted relative">
-                      <Image
+                    <div className="w-full h-36 rounded-xl overflow-hidden mb-4 bg-muted">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
                         src={svc.imageUrl}
                         alt={svc.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-cover"
-                        priority={i === 0}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading={i === 0 ? "eager" : "lazy"}
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                       />
                     </div>
                   ) : (

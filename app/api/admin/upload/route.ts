@@ -70,7 +70,9 @@ export async function POST(req: NextRequest) {
     const filePath = path.join(UPLOAD_DIR, filename);
     fs.writeFileSync(filePath, outputBuffer);
 
-    const publicUrl = `/uploads/${filename}`;
+    // Use /api/uploads/ route to guarantee the image is served through Next.js
+    // (CyberPanel OLS may not proxy /uploads/ static files reliably)
+    const publicUrl = `/api/uploads/${filename}`;
     const originalSizeKB = Math.round(file.size / 1024);
     const newSizeKB = Math.round(outputBuffer.length / 1024);
 
