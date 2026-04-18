@@ -9,7 +9,7 @@ import {
 import AdminLayout from "@/components/admin/AdminLayout";
 import { apiFetch } from "@/lib/api";
 import { toast } from "sonner";
-import type { MediaFile } from "@/app/api/admin/media/route";
+import type { MediaFile } from "@lib/types-media";
 
 function formatBytes(bytes: number) {
   if (bytes < 1024) return `${bytes} B`;

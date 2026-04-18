@@ -1,5 +1,27 @@
 [
   {
+    "slug": "code-craft-bd-digital-solutions-2025",
+    "title": "Code Craft BD: Building Digital Solutions for Bangladesh in 2025",
+    "title_bn": "??? ?????? ????: ???? ???? ????????? ??????? ?????? ????",
+    "excerpt": "Discover how Code Craft BD helps businesses grow digitally in Bangladesh with cutting-edge web solutions, e-commerce platforms, and AI automation.",
+    "excerpt_bn": "????? ?????? ??? ?????? ???? ?????????? ???????????? ?????????? ????? ?????? ????? ???????? ?????? ???? ??????? ?????",
+    "content": "<h2>Our Mission</h2><p>Code Craft BD was founded with a single mission: to help Bangladesh's growing businesses establish a powerful, professional digital presence. In 2025, having a great website is no longer optional - it's essential for survival in a competitive market.</p><h2>What We Do</h2><p>We specialize in building fast, beautiful websites and web applications using modern technologies like Next.js, React, and Laravel. From simple portfolio websites to complex e-commerce platforms with bKash payment integration, we handle it all.</p><h2>Why Choose Code Craft BD?</h2><ul><li>Local expertise with global standards</li><li>Full Bengali language support</li><li>Fast delivery - most projects in 2-4 weeks</li><li>Ongoing support and maintenance</li><li>Affordable pricing for Bangladeshi businesses</li></ul><h2>Get Started Today</h2><p>Contact us for a free consultation and let us help you build your digital future.</p>",
+    "coverImage": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80",
+    "tags": [
+      "Code Craft BD",
+      "Bangladesh",
+      "Digital Solutions",
+      "Web Development"
+    ],
+    "published": true,
+    "publishedAt": "2025-04-17T16:00:00.000Z",
+    "authorId": "local-admin-001",
+    "authorName": "Admin",
+    "id": "1776445235506",
+    "createdAt": "2026-04-17T17:00:35.501Z",
+    "updatedAt": "2026-04-17T17:00:35.501Z"
+  },
+  {
     "id": "1745000000001",
     "slug": "how-to-build-ecommerce-website-bangladesh",
     "title": "How to Build a Profitable E-Commerce Website in Bangladesh",
@@ -8,7 +30,13 @@
     "excerpt_bn": "বিকাশ, নগদ ও কার্ড পেমেন্ট ইন্টিগ্রেশন সহ অনলাইন স্টোর চালু করতে বাংলাদেশের উদ্যোক্তাদের জন্য সম্পূর্ণ গাইড।",
     "content": "<h2>Why E-Commerce is Booming in Bangladesh</h2><p>Bangladesh's digital economy is growing at an unprecedented pace. With over 130 million smartphone users and a thriving mobile banking ecosystem (bKash, Nagad, Rocket), there has never been a better time to launch an online store.</p><h2>Step 1: Choose Your Platform</h2><p>For most businesses in Bangladesh, <strong>WooCommerce</strong> (WordPress) or a custom <strong>Laravel</strong> solution works best. WooCommerce offers hundreds of ready-made plugins, while Laravel gives you complete control over your business logic.</p><h2>Step 2: Integrate Local Payment Gateways</h2><p>Your customers expect to pay via bKash or Nagad. Make sure you integrate:</p><ul><li><strong>bKash Payment Gateway</strong> — the #1 mobile wallet in BD</li><li><strong>Nagad</strong> — government-backed and trusted</li><li><strong>SSL Commerz</strong> — supports all major cards</li><li><strong>AamarPay</strong> — great for SMEs</li></ul><h2>Step 3: Mobile-First Design</h2><p>Over 85% of Bangladeshi online shoppers browse on mobile. Your store must load in under 3 seconds and work flawlessly on low-end Android devices.</p><h2>Step 4: SEO & Marketing</h2><p>Register your business on Google Business Profile, set up Facebook Pixel, and start Bengali-language SEO content targeting keywords like <em>অনলাইন শপিং বাংলাদেশ</em>.</p><h2>Get Started Today</h2><p>Code Craft BD has helped 40+ businesses launch profitable online stores in Bangladesh. <a href='/contact'>Contact us</a> for a free consultation.</p>",
     "coverImage": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80",
-    "tags": ["E-Commerce", "WooCommerce", "Bangladesh", "bKash", "Business"],
+    "tags": [
+      "E-Commerce",
+      "WooCommerce",
+      "Bangladesh",
+      "bKash",
+      "Business"
+    ],
     "published": true,
     "publishedAt": "2025-03-15T08:00:00.000Z",
     "authorId": null,
@@ -25,7 +53,13 @@
     "excerpt_bn": "প্রমাণিত SEO কৌশল যা আমাদের ক্লায়েন্টদের প্রতিযোগিতামূলক কীওয়ার্ডে বাংলাদেশে Google-এ ১ নম্বরে নিয়ে গেছে।",
     "content": "<h2>Why SEO Matters More Than Ever in Bangladesh</h2><p>With 50+ million active internet users in Bangladesh and Google processing over 2 billion searches per day, appearing on page 1 of Google is no longer optional — it's essential for business survival.</p><h2>The 4 Pillars of SEO for Bangladeshi Businesses</h2><h3>1. Technical SEO</h3><p>Your website must score 90+ on Google PageSpeed Insights. Critical technical fixes include:</p><ul><li>Compress images to WebP format</li><li>Enable server-side caching</li><li>Use a CDN (Cloudflare is free)</li><li>Fix all broken links and 404 errors</li><li>Implement proper SSL (HTTPS)</li></ul><h3>2. On-Page SEO</h3><p>Every page needs a unique, keyword-rich title tag (under 60 chars), a compelling meta description (under 160 chars), and a single H1 tag. Use Bengali keywords naturally throughout your content.</p><h3>3. Off-Page SEO</h3><p>Build backlinks from reputable Bangladeshi websites, local news portals, and business directories. Guest posting on popular blogs is still effective.</p><h3>4. Local SEO</h3><p>Claim and optimise your Google Business Profile. Collect genuine 5-star reviews. List your business on Bangladeshi directories like Bikroy, Shohoz, and chaldal.</p><h2>Bengali Keyword Research</h2><p>Many competitors ignore Bengali keywords — this is your opportunity. Tools like Google Keyword Planner and Ubersuggest support Bengali. Target keywords like <em>ওয়েব ডিজাইন ঢাকা</em>, <em>সেরা ডিজিটাল মার্কেটিং এজেন্সি</em>.</p><h2>Results You Can Expect</h2><p>With consistent effort, most businesses see significant ranking improvements within 3-6 months. One of our clients, a Dhaka fashion brand, achieved <strong>#1 ranking for 45 target keywords</strong> and doubled organic traffic in 6 months.</p>",
     "coverImage": "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=1200&q=80",
-    "tags": ["SEO", "Digital Marketing", "Google", "Bangladesh", "Content"],
+    "tags": [
+      "SEO",
+      "Digital Marketing",
+      "Google",
+      "Bangladesh",
+      "Content"
+    ],
     "published": true,
     "publishedAt": "2025-03-22T09:00:00.000Z",
     "authorId": null,
@@ -42,7 +76,13 @@
     "excerpt_bn": "জানুন কীভাবে বাংলাদেশের ছোট ও মাঝারি ব্যবসাগুলো পুনরাবৃত্তিমূলক কাজ স্বয়ংক্রিয় করতে AI ব্যবহার করছে।",
     "content": "<h2>The AI Revolution Has Reached Bangladesh</h2><p>You don't need to be a tech giant to benefit from artificial intelligence. In 2025, AI tools are affordable, accessible, and transforming how Bangladeshi SMEs operate.</p><h2>Real Tasks You Can Automate Right Now</h2><h3>1. Customer Service with AI Chatbots</h3><p>An AI-powered chatbot on WhatsApp or your website can handle 70% of customer inquiries automatically — 24 hours a day, 7 days a week. No salary, no sick days.</p><ul><li>Answer product questions</li><li>Process simple orders</li><li>Collect customer contact information</li><li>Route complex queries to human agents</li></ul><h3>2. Invoice & Billing Automation</h3><p>Stop manually creating invoices in Excel. A Python script connected to your spreadsheets can auto-generate professional PDF invoices, send them via WhatsApp or email, and track payment status.</p><h3>3. Social Media Scheduling</h3><p>Tools like Buffer, Hootsuite, or a custom Python script can auto-post to Facebook, Instagram, and LinkedIn at the optimal times — even while you sleep.</p><h3>4. Email Marketing Automation</h3><p>Set up automated email sequences for new leads, abandoned cart recovery, and post-purchase follow-ups. This alone can recover 15-20% of lost sales.</p><h2>Case Study: AutoInvoice for a Dhaka Accounting Firm</h2><p>We built a custom automation system for a 12-person accounting firm in Dhaka. The system now auto-generates and sends 200+ invoices per month, saving the team <strong>10+ hours per week</strong> and virtually eliminating payment delays.</p><h2>Getting Started</h2><p>Start small. Identify your most repetitive task and automate it first. <a href='/contact'>Talk to us</a> — we'll assess your workflow and propose a custom automation solution.</p>",
     "coverImage": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=80",
-    "tags": ["AI", "Automation", "Productivity", "Python", "Business"],
+    "tags": [
+      "AI",
+      "Automation",
+      "Productivity",
+      "Python",
+      "Business"
+    ],
     "published": true,
     "publishedAt": "2025-04-01T09:00:00.000Z",
     "authorId": null,
@@ -59,7 +99,13 @@
     "excerpt_bn": "দুটি শীর্ষ ক্রস-প্ল্যাটফর্ম মোবাইল ফ্রেমওয়ার্কের তুলনা করে বাংলাদেশী উদ্যোক্তাদের সঠিক প্রযুক্তি বেছে নিতে সাহায্য করুন।",
     "content": "<h2>Why Mobile Apps Matter for Bangladeshi Businesses</h2><p>Bangladesh has over 100 million mobile internet users. A dedicated mobile app can dramatically increase customer engagement, retention, and revenue compared to mobile websites alone.</p><h2>React Native: Pros & Cons</h2><h3>✅ Advantages</h3><ul><li>Large developer community — easier to hire</li><li>JavaScript-based — familiar to web developers</li><li>Excellent performance for most apps</li><li>Facebook/Meta backed with long-term support</li><li>Huge ecosystem of third-party libraries</li></ul><h3>❌ Disadvantages</h3><ul><li>Can struggle with highly complex animations</li><li>Some native modules require additional bridging</li></ul><h2>Flutter: Pros & Cons</h2><h3>✅ Advantages</h3><ul><li>Extremely smooth 60/120fps animations</li><li>Single codebase for iOS, Android, AND Web</li><li>Growing rapidly with strong Google backing</li><li>Beautiful Material Design components built-in</li></ul><h3>❌ Disadvantages</h3><ul><li>Dart language — smaller talent pool in Bangladesh</li><li>Larger app bundle sizes</li><li>Fewer third-party libraries than React Native</li></ul><h2>Our Recommendation for Bangladesh</h2><p>For most Bangladeshi startups, <strong>React Native</strong> is the better choice due to the larger developer community and JavaScript familiarity. However, if your app requires complex animations or a stunning UI (e.g., a luxury fashion or food delivery app), consider <strong>Flutter</strong>.</p><h2>Budget Expectations</h2><p>A basic MVP mobile app in Bangladesh costs between <strong>৳80,000 – ৳2,50,000</strong> depending on features and complexity. A full-featured app with backend can range from ৳3,00,000 to ৳10,00,000+.</p>",
     "coverImage": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200&q=80",
-    "tags": ["Mobile Development", "React Native", "Flutter", "App", "Bangladesh"],
+    "tags": [
+      "Mobile Development",
+      "React Native",
+      "Flutter",
+      "App",
+      "Bangladesh"
+    ],
     "published": true,
     "publishedAt": "2025-04-05T09:00:00.000Z",
     "authorId": null,
@@ -76,7 +122,13 @@
     "excerpt_bn": "ওয়েবসাইটের পারফরম্যান্স সরাসরি আপনার আয়ে প্রভাব ফেলে। আপনার সাইটকে দ্রুততম করার সঠিক পদক্ষেপগুলি শিখুন।",
     "content": "<h2>The Numbers Don't Lie</h2><p>Research by Google shows that a <strong>1-second delay</strong> in mobile page load time reduces conversions by <strong>7%</strong> and increases bounce rate by <strong>11%</strong>. For a website generating ৳1,00,000/month, that's ৳7,000 lost every month — just from slow loading.</p><h2>How to Measure Your Current Speed</h2><p>Use these free tools to benchmark your site:</p><ul><li><strong>Google PageSpeed Insights</strong> — free, detailed, actionable</li><li><strong>GTmetrix</strong> — shows waterfall loading diagram</li><li><strong>WebPageTest</strong> — tests from real Bangladesh locations</li></ul><h2>The Top 7 Speed Fixes</h2><h3>1. Compress & Convert Images to WebP</h3><p>Images are typically 60-80% of a page's total size. Converting PNG/JPG to WebP reduces file size by 30-50% with no visible quality loss. Use tools like Squoosh or Sharp.</p><h3>2. Enable Caching</h3><p>Set proper Cache-Control headers so returning visitors load your site from their browser cache instead of your server. This can improve repeat-visit load times by 80%+.</p><h3>3. Use a CDN</h3><p>Cloudflare's free tier delivers your static assets from servers closest to your users — crucial in Bangladesh where server distances affect latency significantly.</p><h3>4. Minify CSS, JS & HTML</h3><p>Remove whitespace, comments, and unused code from your assets. Tools like Webpack, Vite, and Next.js do this automatically in production builds.</p><h3>5. Implement Lazy Loading</h3><p>Only load images and components when they enter the viewport. Add <code>loading=\"lazy\"</code> to all non-critical images.</p><h3>6. Reduce Server Response Time</h3><p>Your Time to First Byte (TTFB) should be under 200ms. Upgrade to a modern hosting provider (DigitalOcean, Linode, or VPS) if needed.</p><h3>7. Upgrade to Next.js or Astro</h3><p>Framework-level optimisations (automatic code splitting, image optimisation, server-side rendering) can improve Core Web Vitals scores dramatically.</p>",
     "coverImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
-    "tags": ["Web Performance", "Next.js", "SEO", "Speed", "Core Web Vitals"],
+    "tags": [
+      "Web Performance",
+      "Next.js",
+      "SEO",
+      "Speed",
+      "Core Web Vitals"
+    ],
     "published": true,
     "publishedAt": "2025-04-08T09:00:00.000Z",
     "authorId": null,
@@ -93,7 +145,13 @@
     "excerpt_bn": "একটি শক্তিশালী ব্র্যান্ড শুধু লোগোর চেয়ে অনেক বেশি। বাংলাদেশের ব্যবসার আলাদা হওয়ার জন্য সম্পূর্ণ ব্র্যান্ড আইডেন্টিটি ফ্রেমওয়ার্ক শিখুন।",
     "content": "<h2>What Is Brand Identity?</h2><p>Brand identity is the collection of all visual and emotional elements that make your business recognisable and trustworthy. It's NOT just your logo — it's everything a customer sees, hears, and feels when they interact with your business.</p><h2>The 8 Elements of a Strong Brand Identity</h2><h3>1. Brand Strategy</h3><p>Before designing anything, define your: <strong>Mission</strong> (why you exist), <strong>Vision</strong> (where you're going), <strong>Values</strong> (what you believe), and <strong>Positioning</strong> (how you differ from competitors).</p><h3>2. Logo Design</h3><p>Your logo should work in: full colour, black & white, small sizes (16×16px favicon), and large formats (billboard). A great logo is simple, memorable, and timeless.</p><h3>3. Colour Palette</h3><p>Choose 1 primary colour, 1-2 secondary colours, and neutral tones. Colours trigger emotions: red (energy/urgency), green (trust/growth), blue (professionalism), gold (luxury).</p><h3>4. Typography</h3><p>Select a maximum of 2 fonts: one for headings (distinctive) and one for body text (highly readable). For Bangladeshi businesses, ensure your chosen fonts support Bengali Unicode.</p><h3>5. Voice & Tone</h3><p>How does your brand speak? Formal or casual? Technical or simple? Friendly or professional? Document this and apply it consistently across all content.</p><h3>6. Brand Patterns & Textures</h3><p>Unique graphic patterns, icons, and illustrations that complement your logo and create a cohesive visual language across all touchpoints.</p><h3>7. Photography Style</h3><p>Establish guidelines for the type of images you use — bright/airy vs dark/moody, lifestyle vs product shots, etc.</p><h3>8. Brand Guidelines Document</h3><p>Compile everything into a brand guidelines PDF that your team, designers, and printers can follow consistently.</p><h2>Common Branding Mistakes in Bangladesh</h2><ul><li>Copying competitor logos (legally risky and damages trust)</li><li>Using too many colours (looks amateur)</li><li>Inconsistency across platforms (destroys recognition)</li><li>Ignoring Bengali typography (alienates local customers)</li></ul>",
     "coverImage": "https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&q=80",
-    "tags": ["Branding", "Design", "Logo", "Identity", "Marketing"],
+    "tags": [
+      "Branding",
+      "Design",
+      "Logo",
+      "Identity",
+      "Marketing"
+    ],
     "published": true,
     "publishedAt": "2025-04-10T09:00:00.000Z",
     "authorId": null,
@@ -110,7 +168,13 @@
     "excerpt_bn": "ম্যানুয়াল রেজিস্টার এবং কাগজের রিপোর্ট স্কুলের সময় ও অর্থ নষ্ট করছে। আধুনিক স্কুল ম্যানেজমেন্ট সিস্টেম আপনার জন্য কী করতে পারে তা জানুন।",
     "content": "<h2>The State of School Administration in Bangladesh</h2><p>Most schools in Bangladesh still rely on manual processes: paper attendance registers, handwritten report cards, physical fee collection, and verbal parent communication. This costs enormous time and creates room for errors and disputes.</p><h2>What a School Management System Does</h2><h3>📋 Student Records Management</h3><p>Digitise all student information — admission details, academic history, medical records, and contact information — searchable in seconds.</p><h3>✅ Automated Attendance</h3><p>Teachers mark attendance digitally via tablet or phone. The system automatically notifies parents via SMS if their child is absent. End of manual attendance registers.</p><h3>📊 Online Results & Report Cards</h3><p>Generate professional PDF report cards automatically. Parents can view results from their phone. No more printing, no lost papers.</p><h3>💰 Fee Collection with bKash</h3><p>Parents pay school fees directly via bKash, Nagad, or bank transfer. The system tracks payment status and sends automatic reminders for overdue fees.</p><h3>👨‍👩‍👧 Parent Portal</h3><p>Parents get a dedicated portal to view: attendance records, upcoming exams, homework assignments, fee receipts, and school announcements.</p><h3>📱 SMS & WhatsApp Notifications</h3><p>Auto-send important announcements, exam schedules, result notifications, and emergency alerts to all parents instantly.</p><h2>Case Study: EduBD Implementation</h2><p>We implemented a complete school management system for a 1,200-student school in Dhaka. Results after 6 months:</p><ul><li>Result processing time reduced by <strong>3×</strong></li><li>Fee collection disputes reduced by <strong>90%</strong></li><li>Parent satisfaction scores increased by <strong>40%</strong></li><li>Administrative staff workload reduced by <strong>60%</strong></li></ul><h2>Investment & ROI</h2><p>A complete school management system starts from ৳1,50,000 for a basic implementation. Most schools recover this investment within 6 months through efficiency gains alone.</p>",
     "coverImage": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1200&q=80",
-    "tags": ["Education", "School Management", "Bangladesh", "Software", "Digital"],
+    "tags": [
+      "Education",
+      "School Management",
+      "Bangladesh",
+      "Software",
+      "Digital"
+    ],
     "published": true,
     "publishedAt": "2025-04-12T09:00:00.000Z",
     "authorId": null,
@@ -127,7 +191,13 @@
     "excerpt_bn": "ধীর শেয়ার্ড হোস্টিংয়ের জন্য অতিরিক্ত অর্থ প্রদান বন্ধ করুন। জানুন কখন VPS-এ আপগ্রেড করবেন এবং এটি কীভাবে আপনার ওয়েবসাইটের পারফরম্যান্স পরিবর্তন করবে।",
     "content": "<h2>The Hosting Confusion Problem</h2><p>Most small businesses in Bangladesh start with shared hosting packages from local providers like ExonHost, HostMight, or WebHostBD. This is fine for beginners — but as your business grows, shared hosting becomes a serious bottleneck.</p><h2>What Is Shared Hosting?</h2><p>With shared hosting, your website shares a server with hundreds (sometimes thousands) of other websites. It's cheap (৳300-৳1,200/month) but has significant limitations:</p><ul><li>Slow during traffic spikes (other sites hog resources)</li><li>No control over server configuration</li><li>Security risks from neighbouring sites</li><li>Limited to PHP/MySQL — no Node.js, Python, etc.</li></ul><h2>What Is a VPS?</h2><p>A Virtual Private Server gives you a dedicated slice of a physical server with guaranteed resources. You get root access, can install any software, and your performance isn't affected by other tenants.</p><h2>When Should You Upgrade?</h2><p>Consider upgrading to a VPS when:</p><ul><li>Your site gets 1,000+ daily visitors</li><li>You're running a WooCommerce store with 50+ products</li><li>Your site often times out or crashes</li><li>You need Node.js, Python, or custom server software</li><li>You're handling sensitive customer data (payments)</li></ul><h2>Best VPS Providers for Bangladesh in 2025</h2><h3>International (Recommended)</h3><ul><li><strong>DigitalOcean</strong> — starts at $6/month, Singapore region (closest to BD)</li><li><strong>Linode/Akamai</strong> — excellent performance, Singapore region</li><li><strong>Vultr</strong> — competitive pricing, Mumbai region</li><li><strong>Hetzner</strong> — cheapest option, Europe-based</li></ul><h3>Local Bangladesh Providers</h3><ul><li><strong>ExonHost VPS</strong> — Bangladeshi support, BDT billing</li><li><strong>HostMight VPS</strong> — local data center</li></ul><h2>Recommended Setup for a New VPS</h2><ol><li>Install Ubuntu 22.04 LTS</li><li>Set up Nginx as web server</li><li>Install Node.js (for Next.js apps) or PHP 8.2 (for WordPress)</li><li>Configure SSL with Let's Encrypt (free)</li><li>Set up PM2 for process management</li><li>Configure automated daily backups</li></ol><p>Code Craft BD offers complete <strong>VPS setup and management services</strong>. <a href='/contact'>Contact us</a> and we'll have your server production-ready in 24 hours.</p>",
     "coverImage": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80",
-    "tags": ["Hosting", "VPS", "Server", "Bangladesh", "Web Development"],
+    "tags": [
+      "Hosting",
+      "VPS",
+      "Server",
+      "Bangladesh",
+      "Web Development"
+    ],
     "published": true,
     "publishedAt": "2025-04-15T09:00:00.000Z",
     "authorId": null,

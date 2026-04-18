@@ -44,3 +44,8 @@ tsconfig.tsbuildinfo
 public/uploads/*
 !public/uploads/.gitkeep
 
+# Runtime data files — server-managed, not tracked
+scripts/orders.json
+scripts/contacts.json
+scripts/analytics.ndjson
+

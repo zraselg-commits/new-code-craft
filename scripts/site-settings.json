@@ -17,8 +17,8 @@
   "faviconUrl": "",
   "primaryColor": "#ef4444",
   "accentColor": "#f97316",
-  "footerText": "© 2025 Code Craft BD. All rights reserved.",
-  "footerText_bn": "© ২০২৫ কোড ক্রাফট বিডি। সর্বস্বত্ব সংরক্ষিত।",
+  "footerText": "© 2026 Code Craft BD. All rights reserved.",
+  "footerText_bn": "© ২০২৬ কোড ক্রাফট বিডি। সর্বস্বত্ব সংরক্ষিত।",
   "contactEmail": "hello@codecraftbd.info",
   "contactPhone": "+880 1700-000000",
   "contactAddress": "Dhaka, Bangladesh",
@@ -53,6 +53,6 @@
   "heroImageUrl": "/hero-main.jpg",
   "pricingCurrencyDefault": "BDT",
   "usdToBdtRate": "120",
-  "telegramBotToken": "8615353684:AAF4yOALJfOrnnOss8oW7M7kytJMnWOhh_I",
+  "telegramBotToken": "",
   "telegramChatId": ""
 }

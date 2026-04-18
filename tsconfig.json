@@ -17,7 +17,7 @@
     "plugins": [{ "name": "next" }],
     "paths": {
       "@/*": ["./src/*"],
-      "@lib/*": ["./lib/*"]
+      "@lib/*": ["./lib/*", "./src/lib/*"]
     },
     "noImplicitAny": false,
     "noUnusedLocals": false,

@@ -1,6 +1,6 @@
 import { createRequire } from "module";
 import { existsSync, readFileSync } from "fs";
-import { join } from "path";
+import { join, resolve } from "path";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -137,6 +137,11 @@ const nextConfig = {
       process.env.VITE_FIREBASE_APP_ID ||
       process.env.FIREBASE_WEB_APP_ID ||
       "",
+  },
+  webpack(config) {
+    // Resolve @lib/* → <root>/lib/*  (mirrors tsconfig paths)
+    config.resolve.alias["@lib"] = resolve(process.cwd(), "lib");
+    return config;
   },
 };
 

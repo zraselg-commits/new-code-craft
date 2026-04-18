@@ -1,17 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@lib/auth";
+import type { MediaFile } from "@lib/types-media";
 import * as fs from "fs";
 import * as path from "path";
 
-const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads");
+export type { MediaFile };
 
-export interface MediaFile {
-  filename: string;
-  url: string;
-  size: number;
-  createdAt: string;
-  ext: string;
-}
+const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads");
 
 export async function GET(req: NextRequest) {
   const { user, error, status } = await requireAdmin(req);

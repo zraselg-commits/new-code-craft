@@ -14,8 +14,9 @@ export async function POST(req: NextRequest) {
   try {
     const { message, phone, website } = await req.json();
     const s = getSettings();
-    const botToken = s.telegramBotToken?.trim();
-    const chatId   = s.telegramChatId?.trim();
+    // Prefer env vars (more secure) → fall back to admin panel setting
+    const botToken = (process.env.TELEGRAM_BOT_TOKEN || s.telegramBotToken || "").trim();
+    const chatId   = (process.env.TELEGRAM_CHAT_ID   || s.telegramChatId   || "").trim();
 
     if (botToken && chatId) {
       const text =
@@ -49,7 +50,7 @@ export async function POST(req: NextRequest) {
 export async function GET() {
   try {
     const s = getSettings();
-    const botToken = s.telegramBotToken?.trim();
+    const botToken = (process.env.TELEGRAM_BOT_TOKEN || s.telegramBotToken || "").trim();
     if (!botToken) return NextResponse.json({ ok: false, error: "No bot token configured" }, { status: 400 });
 
     const res = await fetch(`https://api.telegram.org/bot${botToken}/getUpdates`);
