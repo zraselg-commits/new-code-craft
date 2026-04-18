@@ -1,3 +1,4 @@
+export const revalidate = 60;
 export default function OfflinePage() {
   return (
     <html lang="bn">
@@ -31,3 +32,4 @@ export default function OfflinePage() {
     </html>
   );
 }
+
