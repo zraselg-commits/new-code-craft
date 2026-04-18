@@ -139,7 +139,9 @@ const nextConfig = {
       "",
   },
   webpack(config) {
-    // Resolve @lib/* → <root>/lib/*  (mirrors tsconfig paths)
+    // Resolve @/* → <root>/src/*  (mirrors tsconfig paths — needed for fresh server builds)
+    config.resolve.alias["@"] = resolve(process.cwd(), "src");
+    // Resolve @lib/* → <root>/lib/*
     config.resolve.alias["@lib"] = resolve(process.cwd(), "lib");
     return config;
   },
