@@ -59,7 +59,7 @@ const nextConfig = {
 
   async headers() {
     return [
-      // Static asset caching
+      // Static asset caching — long cache (hashed filenames)
       {
         source: "/(.*\\.(?:jpg|jpeg|png|gif|webp|avif|svg|ico|woff2|woff|ttf))",
         headers: [
@@ -76,6 +76,17 @@ const nextConfig = {
         source: "/_next/image(.*)",
         headers: [
           { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
+        ],
+      },
+      // HTML pages — no caching so admin changes show instantly
+      // Disables Next.js cache + OpenLiteSpeed (CyberPanel) proxy cache
+      {
+        source: "/((?!_next/static|_next/image).*)",
+        has: [{ type: "header", key: "accept", value: "(.*text/html.*)" }],
+        headers: [
+          { key: "Cache-Control", value: "no-store, no-cache, must-revalidate" },
+          { key: "Pragma", value: "no-cache" },
+          { key: "X-LiteSpeed-Cache-Control", value: "no-cache" },
         ],
       },
       // Security headers — apply to all routes
