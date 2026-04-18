@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { listLocalPublishedPosts } from "@lib/local-blog-store";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   const posts = listLocalPublishedPosts().map((p) => ({
@@ -16,6 +16,6 @@ export async function GET() {
     authorName: p.authorName ?? "Code Craft BD Team",
   }));
   return NextResponse.json(posts, {
-    headers: { "Cache-Control": "public, max-age=60, stale-while-revalidate=300" },
+    headers: { "Cache-Control": "no-store" },
   });
 }

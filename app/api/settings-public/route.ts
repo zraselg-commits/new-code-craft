@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import * as fs from "fs";
 import * as path from "path";
 
+// Always fetch fresh — admin changes must reflect immediately on VPS
+export const dynamic = "force-dynamic";
+
 const SETTINGS_FILE = path.join(process.cwd(), "scripts", "site-settings.json");
 
 /** Public fields exposed to all visitors (no auth required) */
@@ -138,7 +141,7 @@ export async function GET() {
   }
   return NextResponse.json(pub, {
     headers: {
-      "Cache-Control": "private, max-age=60, must-revalidate",
+      "Cache-Control": "no-store",
     },
   });
 }

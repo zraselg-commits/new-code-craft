@@ -48,15 +48,13 @@ interface DbExport {
   };
 }
 
-let _cache: DbExport | null = null;
-
 function loadExport(): DbExport {
-  if (_cache) return _cache;
+  // NOTE: No in-memory cache — always read from disk so admin changes
+  // are reflected instantly on VPS without a restart.
   const filePath = path.join(process.cwd(), "scripts", "db-export.json");
   if (!fs.existsSync(filePath)) return { tables: {} };
   try {
-    _cache = JSON.parse(fs.readFileSync(filePath, "utf-8")) as DbExport;
-    return _cache;
+    return JSON.parse(fs.readFileSync(filePath, "utf-8")) as DbExport;
   } catch {
     return { tables: {} };
   }

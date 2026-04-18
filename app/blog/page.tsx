@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import BlogPage from "@/pages/BlogPage";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 const SITE = "https://codecraftbd.info";
 

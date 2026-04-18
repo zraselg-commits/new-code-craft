@@ -27,9 +27,9 @@ mkdir -p logs
 # 5. Restart/start with PM2
 echo "♻️  Restarting app with PM2..."
 if pm2 list | grep -q "codecraftbd"; then
-  pm2 reload ecosystem.config.js --env production
+  pm2 reload ecosystem.config.cjs --env production
 else
-  pm2 start ecosystem.config.js --env production
+  pm2 start ecosystem.config.cjs --env production
 fi
 
 # 6. Save PM2 process list (survives reboots)
