@@ -33,9 +33,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
         defaultOptions: {
           queries: {
             retry: 1,
-            staleTime: 30_000,         // 30s — admin changes visible quickly
-            gcTime: 10 * 60_000,
-            refetchOnWindowFocus: true, // refresh when tab is focused
+            staleTime: 0,              // Always fresh — admin changes visible immediately
+            gcTime: 5 * 60_000,
+            refetchOnWindowFocus: true,
             refetchOnReconnect: true,
             queryFn: defaultQueryFn,
           },

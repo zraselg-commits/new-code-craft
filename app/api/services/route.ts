@@ -6,8 +6,8 @@ import {
   getActiveLocalServices,
 } from "@lib/local-services-store";
 
-// Re-validate every 30s in production
-export const revalidate = 30;
+// Always dynamic — admin changes must reflect instantly
+export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
   const includePackages = req.nextUrl.searchParams.get("include") === "packages";
@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
         packages: allPkgs.filter((p) => p.serviceId === svc.id),
       }));
       return NextResponse.json(result, {
-        headers: { "Cache-Control": "private, max-age=30, must-revalidate" },
+        headers: { "Cache-Control": "no-store" },
       });
     }
 
@@ -42,7 +42,7 @@ export async function GET(req: NextRequest) {
     }));
 
     return NextResponse.json(result, {
-      headers: { "Cache-Control": "private, max-age=30, must-revalidate" },
+      headers: { "Cache-Control": "no-store" },
     });
   } catch (err) {
     console.error("Services API error:", err);

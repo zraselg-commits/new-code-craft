@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import * as fs from "fs";
 import * as path from "path";
 
+// Always dynamic — admin changes must reflect instantly
+export const dynamic = "force-dynamic";
+
 const PORTFOLIO_FILE = path.join(process.cwd(), "scripts", "portfolio-data.json");
 
 const DEFAULT_PORTFOLIO = [
@@ -24,7 +27,7 @@ export async function GET() {
   try {
     const items = readPortfolio();
     return NextResponse.json(items, {
-      headers: { "Cache-Control": "private, max-age=30, must-revalidate" },
+      headers: { "Cache-Control": "no-store" },
     });
   } catch {
     return NextResponse.json([], { status: 200 });
